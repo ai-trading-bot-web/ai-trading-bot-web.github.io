@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://ai-trading-bot-web.github.io/sitemap.xml

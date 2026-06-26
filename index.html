@@ -3,124 +3,492 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI Trading Bot</title>
-  <meta name="description" content="AI Trading Bot automates crypto trading strategies from your own connected wallet.">
+  <title>AI Trading Bot - Decentralized DeFi Portal</title>
+  <meta name="description" content="Secure, non-custodial portal for AI Trading Bot DeFi operations directly from your own wallet.">
   <link rel="canonical" href="https://ai-trading-bot-web.github.io/">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="theme-color" content="#F6F7F5">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="AI Trading Bot">
-  <meta property="og:description" content="AI Trading Bot automates crypto trading strategies from your own connected wallet.">
-  <meta property="og:url" content="https://ai-trading-bot-web.github.io/">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI Trading Bot">
-  <meta name="twitter:description" content="AI Trading Bot automates crypto trading strategies from your own connected wallet.">
+  <meta name="robots" content="index,follow">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="stylesheet" href="style.css">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://ai-trading-bot-web.github.io/#website",
-        "url": "https://ai-trading-bot-web.github.io/",
-        "name": "AI Trading Bot",
-        "inLanguage": "en"
-      },
-      {
-        "@type": "Organization",
-        "@id": "https://ai-trading-bot-web.github.io/#organization",
-        "name": "AI Trading Bot",
-        "url": "https://ai-trading-bot-web.github.io/"
-      },
-      {
-        "@type": "WebApplication",
-        "@id": "https://ai-trading-bot-web.github.io/#app",
-        "name": "AI Trading Bot",
-        "applicationCategory": "FinanceApplication",
-        "operatingSystem": "Web",
-        "url": "https://ai-trading-bot-web.github.io/"
-      }
-    ]
+  <link rel="prefetch" href="dashboard/">
+  <link rel="prerender" href="dashboard/">
+  <style>
+
+
+:root {
+  --bg: #f6f7f5;
+  --surface: #ffffff;
+  --surface-soft: #f1f3f1;
+  --ink: #121514;
+  --muted: #666f6b;
+  --faint: #9aa29e;
+  --line: rgba(18, 21, 20, 0.1);
+  --line-strong: rgba(18, 21, 20, 0.16);
+  --accent: #10b981;
+  --accent-soft: rgba(16, 185, 129, 0.12);
+  --shadow: 0 28px 70px -42px rgba(18, 21, 20, 0.42);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  overflow: hidden;
+  color: var(--ink);
+  background: linear-gradient(180deg, #fbfbfa 0%, var(--bg) 100%);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.topbar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+  padding: 20px clamp(18px, 4vw, 44px) 10px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.brand img {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2.5vw, 28px);
+  margin-left: 10px;
+  min-width: 0;
+}
+
+.nav a {
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 520;
+  white-space: nowrap;
+  transition: color 160ms ease;
+}
+
+.nav a:hover {
+  color: var(--ink);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 17px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 14px 38px -30px rgba(18, 21, 20, 0.45);
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.ghost:hover {
+  border-color: rgba(16, 185, 129, 0.42);
+  transform: translateY(-1px);
+}
+
+.stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px clamp(18px, 4vw, 44px) 10px;
+  text-align: center;
+}
+
+.hero {
+  max-width: 760px;
+}
+
+h1 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(3.1rem, 7vw, 5.7rem);
+  line-height: 0.98;
+  letter-spacing: 0;
+  font-weight: 820;
+}
+
+.value {
+  margin: 18px auto 0;
+  max-width: 54ch;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.45vw, 1.18rem);
+}
+
+.value strong {
+  color: var(--ink);
+  font-weight: 780;
+}
+
+.app-card {
+  width: min(100%, 520px);
+  margin-top: clamp(24px, 4vh, 34px);
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow);
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--line);
+}
+
+.eyebrow {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 760;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.markets {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.market-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 5px 10px 5px 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-soft);
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.market-chip img {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+
+.steps {
+  display: grid;
+  gap: 10px;
+  padding: 14px 0 16px;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 12px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 62px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fbfbfa;
+  text-align: left;
+}
+
+.step:first-child {
+  grid-template-columns: 12px minmax(0, 1fr);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--faint);
+  box-shadow: 0 0 0 4px rgba(154, 162, 158, 0.12);
+}
+
+.dot.active {
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.step-title,
+.step-copy {
+  display: block;
+}
+
+.step-title {
+  color: var(--ink);
+  font-size: 0.98rem;
+  font-weight: 780;
+}
+
+.step-copy {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.step-copy b {
+  color: var(--ink);
+  font-weight: 780;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 112px;
+  min-height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 760;
+  cursor: pointer;
+  transition: border-color 160ms ease, color 160ms ease;
+}
+
+.toggle:hover,
+.toggle[aria-pressed="true"] {
+  border-color: rgba(16, 185, 129, 0.46);
+  color: var(--ink);
+}
+
+.toggle-track {
+  position: relative;
+  width: 32px;
+  height: 18px;
+  border-radius: 999px;
+  background: #dfe4e1;
+  transition: background 160ms ease;
+}
+
+.toggle-track span {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: 0 1px 4px rgba(18, 21, 20, 0.22);
+  transition: transform 160ms ease;
+}
+
+.toggle[aria-pressed="true"] .toggle-track {
+  background: var(--accent);
+}
+
+.toggle[aria-pressed="true"] .toggle-track span {
+  transform: translateX(14px);
+}
+
+.primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 54px;
+  border-radius: 15px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 1.02rem;
+  font-weight: 820;
+  box-shadow: 0 18px 36px -24px rgba(16, 185, 129, 0.8);
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.primary:hover {
+  background: var(--accent);
+  transform: translateY(-1px);
+}
+
+.foot {
+  flex: none;
+  padding: 8px 24px 22px;
+  color: var(--faint);
+  font-size: 0.84rem;
+  font-weight: 650;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    padding-top: 16px;
+    gap: 10px;
   }
-  </script>
+
+  .nav {
+    display: none;
+  }
+
+  .brand {
+    font-size: 0.96rem;
+  }
+
+  .ghost {
+    min-height: 36px;
+    padding: 0 14px;
+    font-size: 0.86rem;
+  }
+
+  .stage {
+    padding-top: 8px;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 15vw, 4.1rem);
+  }
+
+  .value {
+    margin-top: 14px;
+    font-size: 1rem;
+  }
+
+  .app-card {
+    margin-top: 22px;
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .card-top {
+    gap: 10px;
+  }
+
+  .market-chip {
+    min-height: 32px;
+    padding-right: 9px;
+  }
+
+  .step {
+    grid-template-columns: 10px minmax(0, 1fr);
+    min-height: 0;
+    gap: 10px;
+    padding: 11px 12px;
+  }
+
+  .step .toggle {
+    grid-column: 2;
+    margin-top: 2px;
+  }
+
+  .primary {
+    min-height: 50px;
+  }
+
+  .foot {
+    padding-bottom: 16px;
+  }
+}
+
+@media (max-width: 390px) {
+  .topbar {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .brand span {
+    max-width: 142px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .stage {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  .card-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+
+  
+.footer {
+  text-align: center !important;
+}
+  </style>
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer" aria-label="AI Trading Bot home">
+    <div class="brand">
       <img src="favicon.png" width="30" height="30" alt="">
       <span>AI Trading Bot</span>
-    </a>
-    <nav class="nav" aria-label="Authority references">
-      <a href="https://www.investopedia.com/articles/active-trading/101014/basics-algorithmic-trading-concepts-and-examples.asp" target="_blank" rel="nofollow noopener noreferrer">Algorithmic trading</a>
-      <a href="https://www.coingecko.com/" target="_blank" rel="nofollow noopener noreferrer">CoinGecko markets</a>
-      <a href="https://ethereum.org/wallets/" target="_blank" rel="nofollow noopener noreferrer">Ethereum wallets</a>
-    </nav>
+    </div>
     <span class="spacer"></span>
-    <a class="ghost" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Open app</a>
+    <nav class="nav" aria-label="Main Navigation">
+      <a href="how-it-works/">How it works</a>
+      <a href="faq/">FAQ</a>
+      <a href="about/">About</a>
+      <a href="security/">Security</a>
+      <a href="supported-chains/">Supported Chains</a>
+    </nav>
   </header>
-
-  <main class="stage">
-    <section class="hero" aria-labelledby="page-title">
-      <h1 id="page-title">AI Trading Bot</h1>
-      <p class="value"><strong>AI Trading Bot</strong> automates crypto trading strategies from your own connected wallet.</p>
-    </section>
-
-    <section class="app-card" aria-label="Automation status">
-      <div class="card-top">
-        <span class="eyebrow">Automation status</span>
-        <div class="markets" aria-label="Markets">
-          <span class="market-chip"><img src="btc.png" width="22" height="22" alt="Bitcoin">BTC</span>
-          <span class="market-chip"><img src="eth.png" width="22" height="22" alt="Ethereum">ETH</span>
-        </div>
-      </div>
-
-      <div class="steps">
-        <div class="step">
-          <span class="dot" aria-hidden="true"></span>
-          <div>
-            <span class="step-title">Connect wallet</span>
-            <span class="step-copy">Use your own wallet for approvals.</span>
-          </div>
-        </div>
-        <div class="step">
-          <span class="dot active" aria-hidden="true"></span>
-          <div>
-            <span class="step-title">Run strategy</span>
-            <span class="step-copy">Strategy state: <b data-state>Paused</b></span>
-          </div>
-          <button class="toggle" type="button" data-toggle aria-pressed="false">
-            <span class="toggle-track" aria-hidden="true"><span></span></span>
-            <span data-toggle-label>Paused</span>
-          </button>
-        </div>
-      </div>
-
-      <a class="primary" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Enter App</a>
-    </section>
+  <main class="stage" style="padding: 100px 24px; text-align: center; max-width: 800px; margin: 0 auto;">
+    <h1 style="font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 24px; font-weight: 800;">AI Trading Bot</h1>
+    <p class="value" style="font-size: 1.25rem; opacity: 0.8; margin-bottom: 40px; line-height: 1.6;">Secure, non-custodial gateway for decentralized operations. Connect your Web3 wallet to enter the portal.</p>
+    <a class="open-app" href="dashboard/" style="display: inline-flex; justify-content: center; align-items: center; min-height: 52px; padding: 0 32px; border-radius: 9999px; background: var(--accent, #625bf3); color: #fff; font-weight: 700; text-decoration: none; font-size: 1.1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.15); transition: transform 0.2s ease;">Open App Dashboard</a>
   </main>
-
-  <footer class="foot">AI Trading Bot — 2026</footer>
-
-  <script>
-  (function () {
-    "use strict";
-    var button = document.querySelector("[data-toggle]");
-    var state = document.querySelector("[data-state]");
-    var label = document.querySelector("[data-toggle-label]");
-    if (!button || !state || !label) return;
-
-    button.addEventListener("click", function () {
-      var running = button.getAttribute("aria-pressed") !== "true";
-      var text = running ? "Running" : "Paused";
-      button.setAttribute("aria-pressed", String(running));
-      state.textContent = text;
-      label.textContent = text;
-    });
-  })();
-  </script>
+  <footer class="footer">AI Trading Bot &mdash; 2026</footer>
 </body>
 </html>
