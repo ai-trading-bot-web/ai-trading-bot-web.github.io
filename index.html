@@ -3,127 +3,368 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI Trading Bot</title>
-  <meta name="description" content="AI Trading Bot automates crypto trading strategies from your own connected wallet.">
+  <title>AI Trading Bot - DeFi Signals App</title>
+  <meta name="description" content="AI Trading Bot helps you build non-custodial DeFi strategies, preview live market signals and open the app before you act.">
+  <meta name="theme-color" content="#F5F7FA">
   <link rel="canonical" href="https://ai-trading-bot-web.github.io/">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="theme-color" content="#F6F7F5">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="AI Trading Bot">
-  <meta property="og:description" content="AI Trading Bot automates crypto trading strategies from your own connected wallet.">
-  <meta property="og:url" content="https://ai-trading-bot-web.github.io/">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI Trading Bot">
-  <meta name="twitter:description" content="AI Trading Bot automates crypto trading strategies from your own connected wallet.">
+  <meta name="robots" content="index,follow">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="stylesheet" href="style.css">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://ai-trading-bot-web.github.io/#website",
-        "url": "https://ai-trading-bot-web.github.io/",
-        "name": "AI Trading Bot",
-        "inLanguage": "en"
-      },
-      {
-        "@type": "Organization",
-        "@id": "https://ai-trading-bot-web.github.io/#organization",
-        "name": "AI Trading Bot",
-        "url": "https://ai-trading-bot-web.github.io/"
-      },
-      {
-        "@type": "WebApplication",
-        "@id": "https://ai-trading-bot-web.github.io/#app",
-        "name": "AI Trading Bot",
-        "applicationCategory": "FinanceApplication",
-        "operatingSystem": "Web",
-        "url": "https://ai-trading-bot-web.github.io/"
-      }
-    ]
-  }
-  </script>
-
   <link rel="prefetch" href="dashboard/">
-  <link rel="prerender" href="dashboard/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI Trading Bot - DeFi Signals App">
+  <meta property="og:description" content="Create a non-custodial AI trading workflow for DeFi assets, live signals and route previews before you trade.">
+  <meta property="og:image" content="og-cover.png">
+  <meta property="og:url" content="https://ai-trading-bot-web.github.io/">
+  <style>
+  :root{
+    --bg:#F5F7FA; --panel:#FFFFFF; --field:#F3F6FA;
+    --ink:#0F1620; --muted:#5A6472; --faint:#8C95A3;
+    --line:rgba(16,22,32,.10); --line-2:rgba(16,22,32,.055);
+    --accent:#2563EB; --accent-ink:#1B49AD; --accent-soft:rgba(37,99,235,.10);
+    --pos:#15A34A;
+    --radius:22px; --radius-sm:14px;
+    --shadow-card:0 1px 0 rgba(16,22,32,.03), 0 32px 62px -30px rgba(16,22,32,.32), 0 10px 24px -18px rgba(16,22,32,.18);
+    --shadow-soft:0 1px 0 rgba(16,22,32,.02), 0 20px 44px -32px rgba(16,22,32,.26);
+    --ui:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+    --body:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0; overflow-x:hidden}
+  body{background:var(--bg); color:var(--ink); font-family:var(--body); line-height:1.55; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; position:relative}
+  a{color:inherit; text-decoration:none}
+  a.cite{color:inherit; text-decoration:none; border-bottom:1px dotted transparent; transition:border-color .15s ease}
+  a.cite:hover{border-bottom-color:var(--faint)}
+  img{display:block; max-width:100%}
+  button{font:inherit; cursor:pointer; border:none; background:none; color:inherit}
+  h1,h2,h3,p{margin:0}
+
+  /* ---------- texture (diagonal hatch + cool glow) ---------- */
+  .bg{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden}
+  .bg .glow{position:absolute; inset:0; background:
+      radial-gradient(720px 480px at 50% -10%, rgba(37,99,235,.10), transparent 62%),
+      radial-gradient(640px 520px at 90% 12%, rgba(37,99,235,.06), transparent 60%);}
+  .bg .hatch{position:absolute; inset:0;
+    background-image:repeating-linear-gradient(45deg, rgba(16,22,32,.035) 0 1px, transparent 1px 13px);
+    -webkit-mask-image:radial-gradient(130% 95% at 50% 8%, #000 46%, transparent 90%);
+            mask-image:radial-gradient(130% 95% at 50% 8%, #000 46%, transparent 90%);}
+
+  /* ---------- top bar ---------- */
+  .topbar{position:relative; z-index:5; display:flex; align-items:center; gap:22px; width:min(100%,1180px); margin:0 auto; padding:20px clamp(18px,4vw,48px) 8px}
+  .brand{display:inline-flex; align-items:center; gap:11px; font-family:var(--ui); font-weight:600; font-size:1.05rem; letter-spacing:-.01em}
+  .brand img{width:30px; height:30px; border-radius:9px; box-shadow:0 0 0 1px rgba(16,22,32,.06)}
+  .spacer{flex:1}
+  .nav{display:flex; align-items:center; gap:clamp(16px,2.6vw,30px)}
+  .nav a{font-family:var(--ui); font-weight:500; font-size:.92rem; color:var(--muted); transition:color .16s ease}
+  .nav a:hover{color:var(--accent-ink)}
+
+  /* ---------- section frame (mobile-safe) ---------- */
+  .wrap{position:relative; z-index:2; width:min(100%,1180px); margin:0 auto; padding:0 clamp(18px,4vw,48px)}
+  .sec{padding-top:clamp(50px,7vh,90px); padding-bottom:clamp(50px,7vh,90px)}
+  .sec-head{max-width:60ch; margin:0 0 clamp(26px,4vh,40px)}
+  .eyebrow{display:inline-flex; align-items:center; gap:9px; font-family:var(--ui); font-weight:600; font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink)}
+  .eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px var(--accent-soft)}
+  .eyebrow svg{width:15px; height:15px}
+  .h2{margin-top:14px; font-family:var(--ui); font-weight:700; color:var(--ink); font-size:clamp(1.9rem,3.4vw,2.7rem); line-height:1.04; letter-spacing:-.02em}
+  .sec-head p{margin-top:14px; color:var(--muted); font-size:clamp(1rem,1.3vw,1.12rem); line-height:1.6}
+
+  /* ---------- hero ---------- */
+  .hero{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(360px,.82fr); align-items:center; gap:clamp(34px,6vw,80px); padding-top:clamp(18px,3vh,40px); padding-bottom:clamp(30px,5vh,56px)}
+  .copy{min-width:0}
+  .hero h1{margin:16px 0 0; font-family:var(--ui); font-weight:700; color:var(--ink); font-size:clamp(2.7rem,5.6vw,4.5rem); line-height:1; letter-spacing:-.03em}
+  .deck{max-width:46ch; margin:20px 0 0; color:var(--muted); font-size:clamp(1.04rem,1.35vw,1.18rem); line-height:1.6}
+  .deck strong{color:var(--ink); font-weight:600; box-shadow:inset 0 -.36em 0 var(--accent-soft)}
+  .chips{list-style:none; margin:26px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:9px}
+  .chips li{display:inline-flex; align-items:center; gap:7px; min-height:38px; padding:8px 14px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.7); font-family:var(--ui); font-weight:500; font-size:.88rem; color:var(--ink)}
+  .chips li::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--accent)}
+  .cta-row{display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin:30px 0 0}
+  .primary{display:inline-flex; align-items:center; justify-content:center; gap:9px; min-height:54px; padding:0 28px; border-radius:14px; background:var(--accent); color:#fff; font-family:var(--ui); font-weight:600; font-size:1.02rem; letter-spacing:-.01em; box-shadow:0 18px 34px -20px rgba(37,99,235,.8); transition:transform .18s ease, box-shadow .18s ease, filter .18s ease}
+  .primary:hover{transform:translateY(-1px); filter:brightness(1.04); box-shadow:0 24px 42px -20px rgba(37,99,235,.9)}
+  .primary svg{width:17px; height:17px}
+  .ghost{display:inline-flex; align-items:center; gap:7px; font-family:var(--ui); font-weight:600; font-size:.98rem; color:var(--muted); transition:color .16s ease}
+  .ghost:hover{color:var(--accent-ink)}
+  .ghost svg{width:15px; height:15px}
+
+  /* ---------- checker card ---------- */
+  .card{width:min(100%,420px); margin:0 0 0 auto; padding:16px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow-card); position:relative}
+  .card::before{content:""; position:absolute; inset:0 0 auto; height:1px; border-radius:var(--radius) var(--radius) 0 0; background:linear-gradient(90deg, transparent, rgba(37,99,235,.45), transparent)}
+  .card-head{display:flex; align-items:center; justify-content:space-between; padding:2px 4px 14px}
+  .card-head .ct{font-family:var(--ui); font-weight:600; font-size:1.04rem; letter-spacing:-.01em}
+  .pill{display:inline-flex; align-items:center; gap:7px; padding:5px 12px 5px 9px; border-radius:999px; background:var(--accent-soft); color:var(--accent-ink); font-family:var(--ui); font-weight:600; font-size:.76rem}
+  .pill .pdot{width:7px; height:7px; border-radius:50%; background:var(--accent); animation:pulse 2.4s ease-out infinite}
+  .flabel{display:block; margin:0 0 8px 2px; color:var(--faint); font-size:.72rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase}
+  .infield{display:flex; align-items:center; gap:9px; min-height:54px; padding:8px 10px; border:1px solid var(--line); border-radius:var(--radius-sm); background:var(--field)}
+  .chainchip{display:inline-flex; align-items:center; gap:7px; height:36px; padding:0 11px 0 7px; border:1px solid var(--line); border-radius:999px; background:var(--panel); font-family:var(--ui); font-weight:600; font-size:.84rem; flex:none}
+  .chainchip img{width:22px; height:22px; border-radius:50%}
+  .infield .addr{min-width:0; flex:1; color:var(--faint); font-size:.95rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-variant-numeric:tabular-nums}
+  .run{display:flex; align-items:center; justify-content:center; gap:8px; width:100%; margin-top:12px; min-height:52px; border-radius:14px; background:var(--accent); color:#fff; font-family:var(--ui); font-weight:600; font-size:1rem; box-shadow:0 16px 30px -20px rgba(37,99,235,.8); transition:transform .18s ease, filter .18s ease}
+  .run:hover{transform:translateY(-1px); filter:brightness(1.04)}
+  .run svg{width:17px; height:17px}
+  .result{margin-top:12px; padding:14px; border:1px solid var(--line); border-radius:var(--radius-sm); background:var(--panel)}
+  .result .rtop{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px}
+  .result .rt{font-family:var(--ui); font-weight:600; font-size:.94rem}
+  .result .rpill{display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; background:var(--field); color:var(--muted); font-size:.74rem; font-weight:600}
+  .checks{display:grid; gap:8px}
+  .chk{display:flex; align-items:center; gap:10px; color:var(--muted); font-size:.88rem}
+  .chk .ci{width:24px; height:24px; border-radius:7px; display:grid; place-items:center; background:var(--accent-soft); color:var(--accent-ink); flex:none}
+  .chk .ci svg{width:14px; height:14px}
+  .note{margin:12px 2px 2px; text-align:center; color:var(--faint); font-size:.78rem}
+
+  /* ---------- how it works ---------- */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+  .step{padding:24px 22px; background:var(--panel); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow-soft)}
+  .step .num{display:inline-grid; place-items:center; width:34px; height:34px; border-radius:10px; background:var(--accent-soft); color:var(--accent-ink); font-family:var(--ui); font-weight:700; font-size:.95rem; margin-bottom:14px}
+  .step h3{margin:0 0 8px; font-family:var(--ui); font-weight:600; font-size:1.12rem; color:var(--ink); letter-spacing:-.01em}
+  .step p{color:var(--muted); font-size:.94rem; line-height:1.55}
+
+  /* ---------- what it checks ---------- */
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+  .ben{padding:24px 22px; background:var(--panel); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow-soft)}
+  .ben .ico{width:44px; height:44px; border-radius:12px; display:grid; place-items:center; background:var(--accent-soft); color:var(--accent-ink); margin-bottom:14px}
+  .ben .ico svg{width:21px; height:21px}
+  .ben h3{font-family:var(--ui); font-weight:600; font-size:1.12rem; color:var(--ink); letter-spacing:-.01em}
+  .ben p{margin-top:8px; color:var(--muted); font-size:.94rem; line-height:1.55}
+
+  /* ---------- FAQ (2-col grid) ---------- */
+  .faq{display:grid; grid-template-columns:repeat(2,1fr); gap:14px}
+  .qa{padding:22px; background:var(--panel); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow-soft)}
+  .qa .qn{font-family:var(--ui); font-weight:700; font-size:.8rem; color:var(--accent-ink); letter-spacing:.04em}
+  .qa h3{margin:8px 0 8px; font-family:var(--ui); font-weight:600; font-size:1.08rem; color:var(--ink); letter-spacing:-.01em}
+  .qa p{color:var(--muted); font-size:.95rem; line-height:1.6}
+  .qa a:not(.cite){color:var(--accent-ink); font-weight:600; box-shadow:inset 0 -.34em 0 var(--accent-soft)}
+
+  /* ---------- related ---------- */
+  .related{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+  .rel{display:flex; flex-direction:column; gap:7px; padding:22px; background:var(--panel); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow-soft); transition:transform .16s ease, border-color .16s ease}
+  .rel:hover{transform:translateY(-2px); border-color:rgba(37,99,235,.35)}
+  .rel .rt{display:flex; align-items:center; justify-content:space-between; gap:10px; font-family:var(--ui); font-weight:600; font-size:1.05rem; color:var(--ink); letter-spacing:-.01em}
+  .rel .rt svg{width:16px; height:16px; color:var(--accent-ink); flex:none}
+  .rel p{color:var(--muted); font-size:.9rem; line-height:1.5}
+
+  /* ---------- footer ---------- */
+  .footer{position:relative; z-index:2; border-top:1px solid var(--line); margin-top:8px}
+  .footer .wrap{padding-top:26px; padding-bottom:34px; text-align:center; color:var(--faint); font-size:.84rem}
+  .footer b{color:var(--muted); font-weight:600}
+
+  @keyframes pulse{0%{box-shadow:0 0 0 0 var(--accent-soft)} 70%{box-shadow:0 0 0 8px rgba(37,99,235,0)} 100%{box-shadow:0 0 0 0 rgba(37,99,235,0)}}
+
+  @media (max-width:920px){
+    .nav{display:none}
+    .hero{grid-template-columns:1fr; gap:30px}
+    .card{margin:0 auto}
+    .hero h1{font-size:clamp(2.5rem,11vw,3.6rem)}
+    .deck{max-width:none}
+    .steps,.grid3,.faq,.related{grid-template-columns:1fr}
+  }
+  @media (max-width:430px){
+    .chips{gap:7px}
+    .primary,.ghost{width:100%; justify-content:center}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important; transition-duration:.01ms!important}}
+  </style>
 </head>
 <body>
+  <div class="bg" aria-hidden="true"><div class="glow"></div><div class="hatch"></div></div>
+
   <header class="topbar">
-    <a class="brand" href="dashboard/" rel="noopener noreferrer" aria-label="AI Trading Bot home">
+    <a class="brand" href="./">
       <img src="favicon.png" width="30" height="30" alt="">
       <span>AI Trading Bot</span>
     </a>
-    <nav class="nav" aria-label="Authority references">
-      <a href="https://www.investopedia.com/articles/active-trading/101014/basics-algorithmic-trading-concepts-and-examples.asp" target="_blank" rel="nofollow noopener noreferrer">Algorithmic trading</a>
-      <a href="https://www.coingecko.com/" target="_blank" rel="nofollow noopener noreferrer">CoinGecko markets</a>
-      <a href="https://ethereum.org/wallets/" target="_blank" rel="nofollow noopener noreferrer">Ethereum wallets</a>
-    </nav>
     <span class="spacer"></span>
-    <a class="ghost" href="dashboard/" rel="noopener noreferrer">Open app</a>
+    <nav class="nav" aria-label="Main Navigation">
+      <a href="how-it-works/">How it works</a>
+      <a href="faq/">FAQ</a>
+      <a href="about/">About</a>
+      <a href="security/">Security</a>
+      <a href="supported-chains/">Supported Chains</a>
+    </nav>
   </header>
 
-  <main class="stage">
-    <section class="hero" aria-labelledby="page-title">
-      <h1 id="page-title">AI Trading Bot</h1>
-      <p class="value"><strong>AI Trading Bot</strong> automates crypto trading strategies from your own connected wallet.</p>
+  <main>
+    <section class="wrap hero">
+      <div class="copy">
+        <span class="eyebrow"><span class="dot"></span>Non-Custodial DeFi Automation</span>
+        <h1>AI Trading Bot</h1>
+        <p class="deck">AI Trading Bot is a <a class="cite" href="https://ai-trading-bot-web.github.io/" rel="nofollow noopener noreferrer">non-custodial bot workspace</a> for shaping DeFi strategies, checking live route context and deciding when a trade deserves your approval. Build the logic, preview the market, then act from the app with <strong>your wallet in control</strong>.</p>
+        <ul class="chips">
+          <li>AI signal setup</li>
+          <li>Live quote preview</li>
+          <li>ETH and BTC assets</li>
+          <li>Non-custodial flow</li>
+        </ul>
+        <div class="cta-row">
+          <a class="primary" href="dashboard/">
+            Open App
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="ghost" href="how-it-works/">
+            How it works
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <section class="card" aria-label="AI trading bot preview">
+        <div class="card-head">
+          <span class="ct">Bot Preview</span>
+          <span class="pill"><span class="pdot"></span>Preview</span>
+        </div>
+        <span class="flabel">Strategy input</span>
+        <div class="infield">
+          <span class="chainchip"><img src="eth.png" alt="Ethereum">ETH</span>
+          <span class="addr">Amount in app</span>
+        </div>
+        <a class="run" href="dashboard/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          Preview strategy
+        </a>
+        <div class="result">
+          <div class="rtop">
+            <span class="rt">What gets checked</span>
+            <span class="rpill">Result in app</span>
+          </div>
+          <div class="checks">
+            <div class="chk"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 4.4-3 7.4-8 9-5-1.6-8-4.6-8-9V7l8-4z"/></svg></span>Signal rules and risk limits</div>
+            <div class="chk"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span>Live quote in app</div>
+            <div class="chk"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg></span>Wallet approval required</div>
+          </div>
+        </div>
+        <p class="note">Read-only preview &middot; no custody &middot; final details shown in the app</p>
+      </section>
     </section>
 
-    <section class="app-card" aria-label="Automation status">
-      <div class="card-top">
-        <span class="eyebrow">Automation status</span>
-        <div class="markets" aria-label="Markets">
-          <span class="market-chip"><img src="btc.png" width="22" height="22" alt="Bitcoin">BTC</span>
-          <span class="market-chip"><img src="eth.png" width="22" height="22" alt="Ethereum">ETH</span>
-        </div>
+    <section class="wrap sec" id="how">
+      <div class="sec-head">
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>How it works</span>
+        <h2 class="h2">Launch an AI Trading Bot in three practical steps</h2>
+        <p>Start with the market you want to monitor, refine the rule set, then review the route before any wallet action. The app is built for <a class="cite" href="https://ethereum.org/en/defi/" rel="nofollow noopener noreferrer">decentralized finance</a> users who want automation without handing over custody.</p>
       </div>
-
       <div class="steps">
         <div class="step">
-          <span class="dot" aria-hidden="true"></span>
-          <div>
-            <span class="step-title">Connect wallet</span>
-            <span class="step-copy">Use your own wallet for approvals.</span>
-          </div>
+          <span class="num">1</span>
+          <h3>Choose the market</h3>
+          <p>Select the chain, asset pair and wallet context you want the bot to watch. ETH, BTC-linked assets and supported DeFi routes are handled from the app.</p>
         </div>
         <div class="step">
-          <span class="dot active" aria-hidden="true"></span>
-          <div>
-            <span class="step-title">Run strategy</span>
-            <span class="step-copy">Strategy state: <b data-state>Paused</b></span>
-          </div>
-          <button class="toggle" type="button" data-toggle aria-pressed="false">
-            <span class="toggle-track" aria-hidden="true"><span></span></span>
-            <span data-toggle-label>Paused</span>
-          </button>
+          <span class="num">2</span>
+          <h3>Define the signal</h3>
+          <p>Turn your idea into rules for entries, exits, slippage tolerance and risk boundaries, with AI assistance helping you tighten the strategy before execution.</p>
+        </div>
+        <div class="step">
+          <span class="num">3</span>
+          <h3>Review before action</h3>
+          <p>Preview the live quote, route and required wallet approval. The bot can prepare the workflow, but your wallet stays the final control point.</p>
         </div>
       </div>
+    </section>
 
-      <a class="primary" href="dashboard/" rel="noopener noreferrer">Enter App</a>
+    <section class="wrap sec" id="checks">
+      <div class="sec-head">
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 4.4-3 7.4-8 9-5-1.6-8-4.6-8-9V7l8-4z"/></svg>What it checks</span>
+        <h2 class="h2">Built for signals, routes and wallet safety</h2>
+      </div>
+      <div class="grid3">
+        <div class="ben">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 4.4-3 7.4-8 9-5-1.6-8-4.6-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <h3>Asset and chain context</h3>
+          <p>Use the AI Trading Bot with supported assets such as <a class="cite" href="https://ethereum.org/" rel="nofollow noopener noreferrer">Ethereum</a> and <a class="cite" href="https://bitcoin.org/" rel="nofollow noopener noreferrer">Bitcoin</a>-linked markets, plus the networks listed in the app.</p>
+        </div>
+        <div class="ben">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M21 7v5M21 7h-5"/></svg></span>
+          <h3>Route and quote awareness</h3>
+          <p>Preview routing context before you act, including decentralized exchange liquidity, live quote behavior and the trade conditions surfaced by the app.</p>
+        </div>
+        <div class="ben">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <h3>Non-custodial controls</h3>
+          <p>The app is designed around <a class="cite" href="https://ethereum.org/en/wallets/" rel="nofollow noopener noreferrer">self-custody wallets</a>: no private-key handoff, no blind custody claim and no trade until the app shows what needs approval.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap sec" id="faq">
+      <div class="sec-head">
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .8-1 1.7M12 17h.01"/></svg>FAQ</span>
+        <h2 class="h2">AI Trading Bot questions</h2>
+      </div>
+      <div class="faq">
+        <div class="qa">
+          <span class="qn">01</span>
+          <h3>What is an AI Trading Bot?</h3>
+          <p>An AI Trading Bot is software that helps turn market inputs, strategy rules and live route data into a trade workflow. This app focuses on DeFi previews and user-approved wallet actions, not custody.</p>
+        </div>
+        <div class="qa">
+          <span class="qn">02</span>
+          <h3>How does the bot decide when to act?</h3>
+          <p>You set the strategy conditions, risk boundaries and preferred assets. The app surfaces signal context and a live preview so you can review the action before continuing.</p>
+        </div>
+        <div class="qa">
+          <span class="qn">03</span>
+          <h3>Do I need to deposit funds?</h3>
+          <p>No. The workflow is non-custodial. You use your wallet, review the app output and keep control of any final approval.</p>
+        </div>
+        <div class="qa">
+          <span class="qn">04</span>
+          <h3>How long does setup take?</h3>
+          <p>Setup time depends on the strategy, chain and wallet flow. The app shows the required inputs, live quote and confirmation steps before you proceed.</p>
+        </div>
+        <div class="qa">
+          <span class="qn">05</span>
+          <h3>Which chains are supported?</h3>
+          <p>The AI Trading Bot is built for supported DeFi networks and assets shown in the app. See the full list on the <a href="supported-chains/">supported chains</a> page.</p>
+        </div>
+        <div class="qa">
+          <span class="qn">06</span>
+          <h3>What does it cost?</h3>
+          <p>Any network costs, app limits or pricing details are shown in the app before you continue. The page does not publish fixed fees because live trading conditions change.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap sec" id="explore">
+      <div class="sec-head">
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></svg>Learn more</span>
+        <h2 class="h2">Explore AI Trading Bot</h2>
+      </div>
+      <div class="related">
+        <a class="rel" href="how-it-works/">
+          <span class="rt">How it works <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <p>The full walkthrough for setting up a strategy, reviewing signals and opening the dashboard.</p>
+        </a>
+        <a class="rel" href="security/">
+          <span class="rt">Security <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <p>How the non-custodial design keeps approvals, wallet access and private keys in your control.</p>
+        </a>
+        <a class="rel" href="supported-chains/">
+          <span class="rt">Supported chains <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <p>The networks and assets available for strategy previews inside the app.</p>
+        </a>
+      </div>
     </section>
   </main>
 
-  <footer class="foot">AI Trading Bot — 2026</footer>
+  <footer class="footer">
+    <div class="wrap">
+      
+    </div>
+  </footer>
 
-  <script>
-  (function () {
-    "use strict";
-    var button = document.querySelector("[data-toggle]");
-    var state = document.querySelector("[data-state]");
-    var label = document.querySelector("[data-toggle-label]");
-    if (!button || !state || !label) return;
-
-    button.addEventListener("click", function () {
-      var running = button.getAttribute("aria-pressed") !== "true";
-      var text = running ? "Running" : "Paused";
-      button.setAttribute("aria-pressed", String(running));
-      state.textContent = text;
-      label.textContent = text;
-    });
-  })();
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[
+    {"@type":"WebSite","@id":"https://ai-trading-bot-web.github.io/#website","url":"https://ai-trading-bot-web.github.io/","name":"AI Trading Bot"},
+    {"@type":"Organization","@id":"https://ai-trading-bot-web.github.io/#org","name":"AI Trading Bot","url":"https://ai-trading-bot-web.github.io/","logo":"https://ai-trading-bot-web.github.io/favicon.png"},
+    {"@type":"WebApplication","name":"AI Trading Bot","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://ai-trading-bot-web.github.io/","description":"Non-custodial DeFi AI trading bot workspace for strategy setup, live signal previews, route checks and wallet-approved actions."},
+    {"@type":"FAQPage","mainEntity":[
+      {"@type":"Question","name":"What is an AI Trading Bot?","acceptedAnswer":{"@type":"Answer","text":"An AI Trading Bot is software that helps turn market inputs, strategy rules and live route data into a trade workflow. This app focuses on DeFi previews and user-approved wallet actions, not custody."}},
+      {"@type":"Question","name":"How does the bot decide when to act?","acceptedAnswer":{"@type":"Answer","text":"You set the strategy conditions, risk boundaries and preferred assets. The app surfaces signal context and a live preview so you can review the action before continuing."}},
+      {"@type":"Question","name":"Do I need to deposit funds?","acceptedAnswer":{"@type":"Answer","text":"No. The workflow is non-custodial. You use your wallet, review the app output and keep control of any final approval."}},
+      {"@type":"Question","name":"How long does setup take?","acceptedAnswer":{"@type":"Answer","text":"Setup time depends on the strategy, chain and wallet flow. The app shows the required inputs, live quote and confirmation steps before you proceed."}},
+      {"@type":"Question","name":"Which chains are supported?","acceptedAnswer":{"@type":"Answer","text":"The AI Trading Bot is built for supported DeFi networks and assets shown in the app. See the full list on the supported chains page."}},
+      {"@type":"Question","name":"What does it cost?","acceptedAnswer":{"@type":"Answer","text":"Any network costs, app limits or pricing details are shown in the app before you continue. The page does not publish fixed fees because live trading conditions change."}}
+    ]}
+  ]}
   </script>
 </body>
 </html>
