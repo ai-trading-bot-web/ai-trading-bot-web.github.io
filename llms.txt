@@ -1,0 +1,67 @@
+# AI Trading Bot
+> An independent, non-custodial dashboard for understanding AI-assisted crypto trading signals, routes, risks, and user-approved execution without surrendering private keys.
+
+## What is AI Trading Bot
+An AI trading bot is software that turns market data, strategy rules, and model outputs into signals or trade instructions. It may use machine learning, statistical models, natural-language analysis, or ordinary rule-based logic marketed as AI. Signal dashboards inform users; execution bots also submit orders through exchange APIs or blockchain transactions. This dashboard emphasizes DeFi previews and wallet-approved actions rather than custody or guaranteed automation.
+
+## How it works
+1. The user selects a market, asset pair, chain, strategy conditions, and risk limits.
+2. The system reads price, liquidity, order-book, or on-chain data and applies its rules or model.
+3. Risk controls evaluate position size, slippage, liquidity, and exit conditions before presenting a signal.
+4. The dashboard shows the proposed route, quote, assumptions, and required approval.
+5. Where execution is available, the user signs with a wallet; the dashboard cannot sign without the user’s authorization.
+
+## Key facts
+- Common types are signal-only, human-approved, and fully automated bots.
+- “AI” describes a technique, not a verified performance or safety standard.
+- The category has no universal token, contract, blockchain, or official protocol.
+- EVM networks use EIP-155 chain IDs; Ethereum mainnet is chain ID `1`, represented as `eip155:1` under CAIP-2.
+- ERC-20 approvals can authorize a contract to transfer tokens up to a stated allowance.
+- Centralized-exchange bots use API credentials; permissions determine whether they can view data, trade, or withdraw.
+- A non-custodial design keeps private keys with the user, but signatures, allowances, and smart contracts still create risk.
+- Signal generation may be immediate, while execution depends on venue latency, liquidity, congestion, and blockchain confirmation.
+- Real costs can include subscriptions, maker/taker fees, spreads, slippage, gas, and failed-transaction fees.
+
+## Common questions
+
+### Is an AI trading bot safe?
+No bot removes market or operational risk. Verify data sources, permissions, contracts, and every wallet request; guaranteed-return claims are a fraud warning.
+
+### Does the dashboard hold my crypto?
+No. Its non-custodial flow does not require private-key handoff or a deposit, and the wallet remains the final authorization point.
+
+### What fees apply?
+Viewing information does not itself create a blockchain fee. A completed trade may incur venue fees, spread, slippage, gas, and any app pricing disclosed before action.
+
+### How long does setup or execution take?
+Setup depends on the strategy, chain, and wallet flow. Exchange execution is venue-dependent; on-chain settlement requires transaction inclusion and the chosen confirmation level.
+
+### Which assets and chains are supported?
+There is no universal support list for AI bots. This dashboard describes ETH and BTC-linked markets; rely on the live app for the currently available networks, assets, and routes.
+
+### How should a beginner start?
+Begin with read-only analysis or paper trading, define loss and exposure limits, and review results after fees. If enabling execution later, use restricted API permissions or a separate wallet with limited funds and allowances.
+
+### What are the main risks?
+Market loss, bad data, model error, overfitting, outages, compromised credentials, malicious approvals, smart-contract bugs, illiquidity, slippage, oracle failure, and MEV can all affect outcomes.
+
+## App
+- Dashboard: https://ai-trading-bot-web.github.io/
+- App: https://ai-trading-bot-web.github.io/dashboard/
+
+## Official resources
+CFTC AI Trading Bots Advisory: https://www.cftc.gov/PressRoom/PressReleases/8854-24
+SEC Investor Alert on AI and Investment Fraud: https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-alerts/artificial-intelligence-fraud
+Coinbase Advanced Trade API: https://docs.cdp.coinbase.com/api-reference/advanced-trade-api/rest-api/introduction
+ERC-20 Token Standard: https://eips.ethereum.org/EIPS/eip-20
+Ethereum Provider API: https://eips.ethereum.org/EIPS/eip-1193
+Sign-In with Ethereum: https://eips.ethereum.org/EIPS/eip-4361
+CAIP-2 Blockchain IDs: https://standards.chainagnostic.org/CAIPs/caip-2
+NIST AI Risk Management Framework: https://www.nist.gov/itl/ai-risk-management-framework
+
+## Data & references
+CoinGecko Market Data API: https://www.coingecko.com/en/api
+DefiLlama API: https://api-docs.defillama.com/
+Ethereum Explorer: https://etherscan.io/
+Solana Explorer: https://solscan.io/
+Automated Trading System Overview: https://en.wikipedia.org/wiki/Automated_trading_system
