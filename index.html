@@ -1,300 +1,1310 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI Trading Bot — Automate crypto trading, around the clock</title>
-  <meta name="description" content="An AI trading bot is software that uses machine-learning or algorithmic signals to analyze crypto market data and automatically submit trades under co">
-  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
-  <meta name="theme-color" content="#eef0f3">
-  <link rel="canonical" href="https://ai-trading-bot-web.github.io/">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="prefetch" href="dashboard/index.html">
-  <link rel="preconnect" href="https://defillama.com/" crossorigin>
-  <link rel="preconnect" href="https://coins.llama.fi" crossorigin>
-  <meta property="og:type" content="website"><meta property="og:url" content="https://ai-trading-bot-web.github.io/">
-  <meta property="og:title" content="AI Trading Bot — Automate crypto trading, around the clock">
-  <meta property="og:description" content="An AI trading bot is software that uses machine-learning or algorithmic signals to analyze crypto market data and automatically submit trades under co">
-  <meta property="og:site_name" content="AI Trading Bot dashboard"><meta property="og:image" content="https://ai-trading-bot-web.github.io/og-cover.png">
-  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="AI Trading Bot — Automate crypto trading, around the clock"><meta name="twitter:description" content="An AI trading bot is software that uses machine-learning or algorithmic signals to analyze crypto market data and automatically submit trades under co"><meta name="twitter:image" content="https://ai-trading-bot-web.github.io/og-cover.png">
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@graph":[
-      {"@type":"WebSite","@id":"https://ai-trading-bot-web.github.io/#website","url":"https://ai-trading-bot-web.github.io/","name":"AI Trading Bot dashboard","inLanguage":"en-US"},
-      {"@type":"Thing","@id":"https://ai-trading-bot-web.github.io/#brand","name":"AI Trading Bot",
-       "description":"An AI trading bot is software that uses machine-learning or algorithmic signals to analyze crypto market data and automatically submit trades under configured rules.",
-       "sameAs":["https://www.freqtrade.io/en/stable/freqai/", "https://joss.theoj.org/papers/10.21105/joss.04864", "https://www.ibm.com/think/topics/artificial-intelligence-finance", "https://en.wikipedia.org/wiki/Automated_trading_system"]},
-      {"@type":"WebPage","@id":"https://ai-trading-bot-web.github.io/#webpage","url":"https://ai-trading-bot-web.github.io/","name":"AI Trading Bot \u2014 Automate crypto trading, around the clock","description":"An AI trading bot is software that uses machine-learning or algorithmic signals to analyze crypto market data and automatically submit trades under co","isPartOf":{"@id":"https://ai-trading-bot-web.github.io/#website"},"about":{"@id":"https://ai-trading-bot-web.github.io/#brand"},"mainEntity":{"@id":"https://ai-trading-bot-web.github.io/#brand"},"inLanguage":"en-US","mentions":[{"@type":"Thing","name":"Automated trading","sameAs":"https://en.wikipedia.org/wiki/Automated_trading_system"},{"@type":"Thing","name":"Backtesting","sameAs":"https://www.freqtrade.io/en/stable/backtesting/"}]},
-      {"@type":"ItemList","@id":"https://ai-trading-bot-web.github.io/#resources","name":"AI Trading Bot \u2014 resources & references","itemListElement":[{"@type":"ListItem","position":1,"name":"Automated Trading Systems","url":"https://en.wikipedia.org/wiki/Automated_trading_system"},{"@type":"ListItem","position":2,"name":"AI in Finance","url":"https://www.ibm.com/think/topics/artificial-intelligence-finance"},{"@type":"ListItem","position":3,"name":"FreqAI","url":"https://www.freqtrade.io/en/stable/freqai/"},{"@type":"ListItem","position":4,"name":"FreqAI Research","url":"https://joss.theoj.org/papers/10.21105/joss.04864"},{"@type":"ListItem","position":5,"name":"Crypto Market Prices","url":"https://www.tradingview.com/markets/cryptocurrencies/prices-all/"},{"@type":"ListItem","position":6,"name":"Bitcoin Market","url":"https://coinmarketcap.com/currencies/bitcoin/"},{"@type":"ListItem","position":7,"name":"Ethereum Market","url":"https://www.kraken.com/prices/ethereum"},{"@type":"ListItem","position":8,"name":"Ethereum DeFi","url":"https://defillama.com/chain/Ethereum"},{"@type":"ListItem","position":9,"name":"Backtesting Strategies","url":"https://www.freqtrade.io/en/stable/backtesting/"},{"@type":"ListItem","position":10,"name":"Running FreqAI","url":"https://www.freqtrade.io/en/stable/freqai-running/"},{"@type":"ListItem","position":11,"name":"Hummingbot Strategies","url":"https://hummingbot.org/strategies/"},{"@type":"ListItem","position":12,"name":"Crypto Data Feeds","url":"https://www.quantconnect.com/docs/v2/writing-algorithms/securities/asset-classes/crypto/requesting-data"},{"@type":"ListItem","position":13,"name":"CFTC Bot Advisory","url":"https://www.cftc.gov/LearnAndProtect/AdvisoriesAndArticles/AITradingBots.html"},{"@type":"ListItem","position":14,"name":"FINRA Auto-Trading Risks","url":"https://www.finra.org/investors/insights/auto-trading-unregistered-entities"},{"@type":"ListItem","position":15,"name":"Investor.gov AI Fraud","url":"https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-alerts/artificial-intelligence-fraud"},{"@type":"ListItem","position":16,"name":"NIST AI RMF","url":"https://www.nist.gov/itl/ai-risk-management-framework"}]}
-    ]
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Trading Bot — How It Works, Strategies & Risks</title>
+<meta name="description" content="A plain guide to how an AI Trading Bot works: signals and models, automated execution via exchange APIs, common strategies like DCA and grid, backtesting, and the real risks of overfitting and API-key security.">
+<link rel="canonical" href="https://ai-trading-bot-web.github.io/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI Trading Bot">
+<meta property="og:url" content="https://ai-trading-bot-web.github.io/">
+<meta property="og:image" content="https://ai-trading-bot-web.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Trading Bot">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://ai-trading-bot-web.github.io/#website", "url": "https://ai-trading-bot-web.github.io/", "name": "AI Trading Bot — How It Works, Strategies & Risks"}, {"@type": "WebPage", "@id": "https://ai-trading-bot-web.github.io/#webpage", "url": "https://ai-trading-bot-web.github.io/", "name": "AI Trading Bot — How It Works, Strategies & Risks", "isPartOf": {"@id": "https://ai-trading-bot-web.github.io/#website"}, "description": "A plain guide to how an AI Trading Bot works: signals and models, automated execution via exchange APIs, common strategies like DCA and grid, backtesting, and the real risks of overfitting and API-key security.", "datePublished": "2026-10-09", "dateModified": "2026-10-09"}, {"@type": "SoftwareApplication", "name": "AI Trading Bot", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ai-trading-bot-web.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Trading bots"}, {"@type": "ListItem", "position": 3, "name": "AI Trading Bot"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is an AI Trading Bot?", "acceptedAnswer": {"@type": "Answer", "text": "It is software that reads market data, evaluates it against a model or rule set, and places orders on an exchange automatically through an API, without a person manually entering each trade."}}, {"@type": "Question", "name": "Does an AI Trading Bot always use machine learning?", "acceptedAnswer": {"@type": "Answer", "text": "No. Many bots sold under that name run fixed, rule-based logic with no learning component. Others use a trained statistical or machine-learning model to generate a signal. Reading the strategy logic is the only way to tell which one a given bot uses."}}, {"@type": "Question", "name": "How does an AI Trading Bot connect to an exchange?", "acceptedAnswer": {"@type": "Answer", "text": "Through an API key with scoped permissions, usually trading enabled and withdrawal disabled, and sometimes restricted to a specific IP address. The exchange keeps custody of the funds; the key only lets the bot place and cancel orders within the scopes granted."}}, {"@type": "Question", "name": "What strategies do AI Trading Bots commonly run?", "acceptedAnswer": {"@type": "Answer", "text": "Common families include dollar-cost averaging, grid trading, arbitrage, and trend-following. Each has a different mechanism and a different failure mode, from a grid bot struggling in a strong one-directional move to an arbitrage bot losing its edge to fees."}}, {"@type": "Question", "name": "Why does backtesting matter for an AI Trading Bot?", "acceptedAnswer": {"@type": "Answer", "text": "Backtesting shows how a strategy would have performed on historical data, but a strong backtest can reflect overfitting to that specific past period rather than a durable edge. Paper trading before live capital helps surface execution issues a backtest cannot show."}}, {"@type": "Question", "name": "What is the biggest security risk with an AI Trading Bot?", "acceptedAnswer": {"@type": "Answer", "text": "A leaked or overscoped API key is the most common operational risk. Limiting the key to trading permissions only, disabling withdrawals, and restricting it to a known IP address reduces the damage if the key is ever exposed."}}, {"@type": "Question", "name": "Can a trading bot lose money?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Drawdowns are a normal part of any strategy, market regime shifts can make a previously effective model underperform, and fees or slippage can erode thin-margin strategies like arbitrage regardless of how the signal was generated."}}]}]}</script>
+<style>
+:root{--bg:#F7FAFC;--surface:#FFFFFF;--text:#0C1620;--muted:#52606F;--accent:#0E7490;--accent-ink:#FFFFFF;--radius:18px;--display:"Outfit";--body:"Inter"}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  min-width: 280px;
+  color: var(--text);
+  background: var(--bg);
+  font-family: var(--body);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
+}
+::selection {
+  color: var(--accent-ink);
+  background: var(--accent);
+}
+a {
+  color: var(--accent);
+  text-decoration-thickness: .075em;
+  text-underline-offset: .2em;
+  transition: color .18s ease, background .18s ease, border-color .18s ease;
+}
+a:hover {
+  color: var(--text);
+}
+a:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 5px;
+  border-radius: calc(var(--radius) * .35);
+}
+img,
+svg,
+video {
+  max-width: 100%;
+  vertical-align: middle;
+}
+img,
+video {
+  height: auto;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  color: var(--text);
+  font-family: var(--display);
+  font-weight: 650;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+p,
+ul,
+ol,
+dl,
+figure,
+blockquote {
+  margin-top: 0;
+}
+[hidden] {
+  display: none !important;
+}
+.c58c0b5 {
+  width: min(100% - 6rem, 1240px);
+  margin-inline: auto;
+}
+.c7b8854 {
+  position: absolute;
+  z-index: 20;
+  top: 1rem;
+  left: 1rem;
+  padding: .75rem 1.15rem;
+  transform: translateY(-180%);
+  border-radius: var(--radius);
+  color: var(--accent-ink);
+  background: var(--accent);
+  font-weight: 600;
+}
+.c7b8854:focus {
+  transform: translateY(0);
+}
+.c68c4a8 {
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 10%, var(--bg));
+  background: var(--bg);
+}
+.cff30e5 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  min-height: 88px;
+  padding-block: 1rem;
+}
+.c416a4e {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  color: var(--text);
+  font-family: var(--display);
+  font-size: 1.2rem;
+  font-weight: 650;
+  letter-spacing: -.04em;
+}
+.cc6d8b3 {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--surface));
+  border-radius: calc(var(--radius) * .55);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+}
+.cc6d8b3 svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.c100c81 {
+  display: inline-flex;
+  align-items: center;
+  gap: .8rem;
+  padding: .5rem 0;
+  color: var(--text);
+  font-size: .9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.c100c81:hover {
+  color: var(--accent);
+}
+.cd75067 {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 15%, var(--bg));
+  background:
+    radial-gradient(ellipse at 95% 12%, color-mix(in srgb, var(--accent) 14%, transparent), color-mix(in srgb, var(--accent) 0%, transparent) 62%),
+    linear-gradient(130deg, var(--surface), color-mix(in srgb, var(--accent) 5%, var(--bg)) 70%, var(--bg));
+}
+.cd75067::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 520px;
+  height: 520px;
+  right: -240px;
+  bottom: -310px;
+  border: 1px solid color-mix(in srgb, var(--accent) 15%, transparent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 65px color-mix(in srgb, var(--accent) 3%, transparent), 0 0 0 130px color-mix(in srgb, var(--accent) 2%, transparent);
+  pointer-events: none;
+}
+.c7a9429 {
+  padding-block: 1.6rem 5rem;
+}
+.ca86a07 {
+  margin-bottom: 3.8rem;
+  color: var(--muted);
+  font-size: .8rem;
+  line-height: 1.6;
+}
+.ca92871 {
+  display: inline;
+  color: var(--muted);
+  font-family: var(--body);
+  font-size: inherit;
+  text-decoration: none;
+}
+.ca92871 a,
+a.ca92871 {
+  color: var(--muted);
+  text-decoration: none;
+}
+.ca92871 a:hover,
+a.ca92871:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+.ca86a07 ol,
+.ca86a07 ul,
+ol.ca92871,
+ul.ca92871 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .45rem .7rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.ca86a07 li {
+  display: inline;
+}
+.ca86a07 [aria-current="page"] {
+  color: var(--text);
+}
+.c1403df {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .8rem;
+  margin-bottom: 1.35rem;
+  color: var(--accent);
+  font-size: .875rem;
+  font-weight: 600;
+}
+.ccf00ff {
+  padding-block: .3rem;
+}
+.c3f153a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  max-width: 180px;
+  padding: .4rem .65rem;
+  border: 1px solid color-mix(in srgb, var(--text) 9%, var(--surface));
+  border-radius: calc(var(--radius) * .6);
+  background: var(--surface);
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--text) 4%, transparent);
+  color: var(--text);
+  font-size: .8rem;
+  line-height: 1;
+}
+.c3f153a:empty {
+  display: none;
+}
+.c3f153a img,
+.c3f153a svg {
+  display: block;
+  width: auto;
+  max-width: 148px;
+  height: 24px;
+  object-fit: contain;
+}
+.cd75067 h1 {
+  max-width: 1050px;
+  margin: 0 0 1.5rem;
+  font-family: var(--display);
+  font-size: clamp(2.7rem, 5.7vw, 5.1rem);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -.055em;
+  overflow-wrap: anywhere;
+}
+.cd75067 h1 em {
+  color: var(--accent);
+  font-style: normal;
+}
+.cd75067 h1 a {
+  color: inherit;
+}
+.c7f21c6 {
+  max-width: 760px;
+  margin: 0 0 2.1rem;
+  color: var(--muted);
+  font-size: clamp(1.05rem, 1.6vw, 1.22rem);
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+.c7b5235 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.7rem;
+  min-height: 54px;
+  padding: .85rem 1.35rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  color: var(--accent-ink);
+  background: var(--accent);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--accent) 18%, transparent);
+  font-family: var(--body);
+  font-size: .95rem;
+  font-weight: 650;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.c7b5235:hover {
+  color: var(--accent-ink);
+  background: color-mix(in srgb, var(--accent) 92%, var(--text));
+  box-shadow: 0 9px 24px color-mix(in srgb, var(--accent) 24%, transparent);
+  transform: translateY(-2px);
+}
+.ccbf2f8 {
+  font-family: var(--body);
+  font-size: 1.25em;
+  line-height: 1;
+}
+.c5fa095 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-block: 1.5rem 4.5rem;
+}
+.c7a4851 {
+  min-width: 0;
+  padding: 1.2rem 1.35rem;
+  border: 1px solid color-mix(in srgb, var(--text) 9%, var(--surface));
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 3px 12px color-mix(in srgb, var(--text) 3%, transparent);
+}
+.c7a4851 strong {
+  display: block;
+  margin-bottom: .2rem;
+  color: var(--text);
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -.02em;
+}
+.c7a4851 span {
+  display: block;
+  color: var(--muted);
+  font-size: .8rem;
+  line-height: 1.5;
+}
+.c7e5ab8 {
+  display: grid;
+  grid-template-columns: 235px minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  padding-bottom: 4.5rem;
+}
+.c8f81ee {
+  position: sticky;
+  top: 2rem;
+  min-width: 0;
+  max-height: calc(100dvh - 4rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--muted) 35%, var(--surface)) var(--surface);
+  padding: .3rem .75rem 1rem .25rem;
+}
+.cc780a4 {
+  margin: 0 0 1.1rem;
+  color: var(--text);
+  font-family: var(--display);
+  font-size: .95rem;
+  font-weight: 650;
+  letter-spacing: -.02em;
+}
+.cb0b95e {
+  display: grid;
+  gap: .3rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cb0b95e li {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+.ca16685 {
+  position: relative;
+  display: block;
+  padding: .7rem .9rem .7rem 1.1rem;
+  border-inline-start: 2px solid color-mix(in srgb, var(--muted) 18%, var(--bg));
+  border-radius: 0 calc(var(--radius) * .55) calc(var(--radius) * .55) 0;
+  color: var(--muted);
+  font-family: var(--body);
+  font-size: .85rem;
+  font-weight: 450;
+  line-height: 1.5;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.ca16685:hover {
+  border-inline-start-color: color-mix(in srgb, var(--accent) 45%, var(--bg));
+  color: var(--text);
+  background: color-mix(in srgb, var(--accent) 5%, var(--bg));
+}
+.ca16685[aria-current="location"] {
+  border-inline-start-color: var(--accent);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 9%, var(--bg));
+  font-weight: 650;
+}
+.c9faf01 {
+  margin: 1.65rem 0 0;
+  padding: 1.2rem 0 0;
+  border-top: 1px solid color-mix(in srgb, var(--text) 10%, var(--bg));
+  color: var(--muted);
+  font-size: .78rem;
+  line-height: 1.65;
+}
+.cc6d626 {
+  min-width: 0;
+}
+.ce851ff {
+  padding: clamp(1.3rem, 3vw, 2.3rem);
+  margin-bottom: 3.75rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--surface));
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 10px 35px color-mix(in srgb, var(--text) 5%, transparent);
+  scroll-margin-top: 2rem;
+}
+.c351a18 {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: .5rem 1.5rem;
+  justify-content: space-between;
+  margin-bottom: 1.4rem;
+}
+.c351a18 h2 {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.3vw, 1.85rem);
+  letter-spacing: -.04em;
+}
+.c351a18 p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .8rem;
+}
+.cad5b06 {
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted) var(--surface);
+}
+.cc4d566 {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text);
+  font-family: var(--body);
+  font-size: .925rem;
+  line-height: 1.6;
+  text-align: left;
+}
+.cc4d566 caption {
+  padding: 0 0 1rem;
+  color: var(--muted);
+  font-size: .85rem;
+  text-align: left;
+}
+.cc4d566 th,
+.cc4d566 td {
+  padding: 1.05rem .85rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 9%, var(--surface));
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+.cc4d566 th {
+  width: 37%;
+  color: var(--muted);
+  font-weight: 500;
+}
+.cc4d566 thead th {
+  color: var(--text);
+  background: color-mix(in srgb, var(--accent) 5%, var(--surface));
+  font-weight: 650;
+}
+.cc4d566 td {
+  font-weight: 550;
+}
+.cc4d566 tr > :first-child {
+  padding-left: 0;
+}
+.cc4d566 tr > :last-child {
+  padding-right: 0;
+}
+.cc4d566 tbody:last-child tr:last-child > *,
+.cc4d566 > tr:last-child > * {
+  border-bottom: 0;
+}
+.cc4d566 td p:last-child,
+.cc4d566 th p:last-child {
+  margin-bottom: 0;
+}
+.cb217fa {
+  min-width: 0;
+}
+.cfee126 {
+  min-width: 0;
+  margin: 0 0 3.4rem;
+  scroll-margin-top: 2rem;
+}
+.cfee126 + .cfee126 {
+  padding-top: 2.8rem;
+  border-top: 1px solid color-mix(in srgb, var(--text) 11%, var(--bg));
+}
+.c886828 {
+  margin: 0 0 1.25rem;
+  color: var(--text);
+  font-family: var(--display);
+  font-size: clamp(1.65rem, 2.8vw, 2.35rem);
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: -.045em;
+}
+.c8a6a46 {
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+.c8a6a46 > :last-child {
+  margin-bottom: 0;
+}
+.c8a6a46 p {
+  margin: 0 0 1.3rem;
+  text-wrap: pretty;
+}
+.c8a6a46 h3 {
+  margin: 2rem 0 .9rem;
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -.025em;
+}
+.c8a6a46 h4,
+.c8a6a46 h5,
+.c8a6a46 h6 {
+  margin: 1.6rem 0 .75rem;
+  font-size: 1.075rem;
+  line-height: 1.4;
+}
+.c8a6a46 h3:first-child,
+.c8a6a46 h4:first-child {
+  margin-top: 0;
+}
+.c8a6a46 strong,
+.cd0ef12 strong {
+  color: var(--text);
+  font-weight: 650;
+}
+.c8a6a46 ul,
+.c8a6a46 ol,
+.cd0ef12 ul,
+.cd0ef12 ol {
+  margin: 1.2rem 0 1.6rem;
+  padding-left: 1.5rem;
+}
+.c8a6a46 li,
+.cd0ef12 li {
+  padding-left: .4rem;
+  margin-block: .55rem;
+}
+.c8a6a46 li::marker,
+.cd0ef12 li::marker {
+  color: var(--accent);
+  font-weight: 600;
+}
+.c8a6a46 li > ul,
+.c8a6a46 li > ol {
+  margin-block: .5rem;
+}
+.c8a6a46 li p {
+  margin-bottom: .6rem;
+}
+.c8a6a46 blockquote {
+  margin: 1.8rem 0;
+  padding: 1.3rem 1.5rem;
+  border-inline-start: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+  color: var(--text);
+  font-size: 1.05rem;
+}
+.c8a6a46 blockquote > :last-child {
+  margin-bottom: 0;
+}
+.c8a6a46 blockquote cite {
+  display: block;
+  margin-top: .9rem;
+  color: var(--muted);
+  font-size: .85rem;
+  font-style: normal;
+}
+.c8a6a46 table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 1.7rem 0;
+  overflow-x: auto;
+  border: 1px solid color-mix(in srgb, var(--text) 12%, var(--surface));
+  border-radius: var(--radius);
+  border-spacing: 0;
+  background: var(--surface);
+  font-family: var(--body);
+  font-size: .875rem;
+  line-height: 1.65;
+  text-align: left;
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted) var(--surface);
+}
+.c8a6a46 table caption {
+  padding: .9rem 1rem;
+  color: var(--muted);
+  font-size: .82rem;
+  text-align: left;
+}
+.c8a6a46 th,
+.c8a6a46 td {
+  min-width: 125px;
+  padding: 1rem 1.15rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 9%, var(--surface));
+  vertical-align: top;
+}
+.c8a6a46 th {
+  color: var(--text);
+  background: color-mix(in srgb, var(--accent) 7%, var(--surface));
+  font-weight: 650;
+}
+.c8a6a46 tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--text) 2%, var(--surface));
+}
+.c8a6a46 tbody:last-child tr:last-child > * {
+  border-bottom: 0;
+}
+.c8a6a46 td > :last-child,
+.c8a6a46 th > :last-child {
+  margin-bottom: 0;
+}
+.c8a6a46 figure {
+  margin: 1.8rem 0;
+}
+.c8a6a46 figure img {
+  display: block;
+  border-radius: var(--radius);
+}
+.c8a6a46 figcaption {
+  margin-top: .7rem;
+  color: var(--muted);
+  font-size: .8rem;
+  line-height: 1.6;
+}
+.c8a6a46 code,
+.cd0ef12 code {
+  padding: .1em .35em;
+  border-radius: calc(var(--radius) * .25);
+  background: color-mix(in srgb, var(--accent) 7%, var(--surface));
+  color: var(--text);
+  font-family: var(--body);
+  font-size: .9em;
+}
+.c8a6a46 pre {
+  overflow-x: auto;
+  padding: 1.2rem;
+  border: 1px solid color-mix(in srgb, var(--text) 10%, var(--surface));
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: .875rem;
+  line-height: 1.7;
+}
+.c8a6a46 pre code {
+  padding: 0;
+  background: var(--surface);
+}
+.c8a6a46 hr {
+  margin: 2rem 0;
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--text) 12%, var(--bg));
+}
+.c8a6a46 dt {
+  margin-top: 1.1rem;
+  color: var(--text);
+  font-weight: 650;
+}
+.c8a6a46 dd {
+  margin: .4rem 0 1rem;
+  color: var(--muted);
+}
+.cad78a1 {
+  padding-top: 2.75rem;
+  border-top: 1px solid color-mix(in srgb, var(--text) 11%, var(--bg));
+  scroll-margin-top: 2rem;
+}
+.cad78a1 > .c886828 {
+  margin-bottom: 1.65rem;
+}
+.c122493 {
+  margin: 0 0 .8rem;
+  border: 1px solid color-mix(in srgb, var(--text) 11%, var(--surface));
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 3px 12px color-mix(in srgb, var(--text) 3%, transparent);
+  overflow: clip;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.c122493:hover {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--surface));
+}
+.c122493[open] {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--surface));
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--text) 4%, transparent);
+}
+.c172eba {
+  position: relative;
+  display: block;
+  padding: 1.35rem 3.8rem 1.35rem 1.4rem;
+  color: var(--text);
+  font-family: var(--display);
+  font-size: 1.025rem;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -.015em;
+  list-style: none;
+  cursor: pointer;
+}
+.c172eba::-webkit-details-marker {
+  display: none;
+}
+.c172eba::after {
+  content: "+";
+  position: absolute;
+  top: 1.3rem;
+  right: 1.35rem;
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 9%, var(--surface));
+  color: var(--accent);
+  font-family: var(--body);
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1;
+}
+.c122493[open] > .c172eba::after {
+  content: "−";
+}
+.c122493 > .c172eba:focus-visible {
+  outline-offset: -5px;
+}
+.cd0ef12 {
+  padding: 0 1.4rem 1.45rem;
+  color: var(--muted);
+  font-family: var(--body);
+  font-size: .95rem;
+  line-height: 1.8;
+}
+.cd0ef12 > :first-child {
+  margin-top: 0;
+}
+.cd0ef12 > :last-child {
+  margin-bottom: 0;
+}
+.cd0ef12 p {
+  margin-bottom: 1rem;
+}
+.cfe094a {
+  padding-block: 3rem 3.6rem;
+  border-top: 1px solid color-mix(in srgb, var(--text) 10%, var(--bg));
+  background: color-mix(in srgb, var(--surface) 70%, var(--bg));
+  scroll-margin-top: 2rem;
+}
+.c69ef81 {
+  display: grid;
+  grid-template-columns: 235px minmax(0, 1fr);
+  gap: clamp(2.5rem, 5vw, 5rem);
+}
+.c22d9cb h2 {
+  margin-bottom: .7rem;
+  font-size: 1.4rem;
+  letter-spacing: -.035em;
+}
+.c22d9cb p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .85rem;
+  line-height: 1.7;
+}
+.c2d0c97 {
+  min-width: 0;
+}
+.cefe1ec {
+  display: grid;
+  gap: .7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--body);
+}
+.c737cdd {
+  display: block;
+  min-width: 0;
+  padding: 1rem 1.2rem;
+  border: 1px solid color-mix(in srgb, var(--text) 9%, var(--surface));
+  border-radius: calc(var(--radius) * .75);
+  background: var(--surface);
+  color: var(--muted);
+  font-family: var(--body);
+  font-size: .875rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.c737cdd a,
+a.c737cdd {
+  color: var(--text);
+  text-decoration-color: color-mix(in srgb, var(--accent) 35%, var(--surface));
+  text-underline-offset: .25em;
+}
+.c737cdd a:hover,
+a.c737cdd:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+.c737cdd p {
+  margin: .4rem 0 0;
+}
+.c737cdd small {
+  color: var(--muted);
+  font-size: .8rem;
+}
+.c1908c8 {
+  border-top: 1px solid color-mix(in srgb, var(--text) 10%, var(--bg));
+  background: var(--bg);
+}
+.c6707c3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  min-height: 100px;
+  padding-block: 1.5rem;
+}
+.c328ce8 {
+  color: var(--text);
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -.025em;
+}
+.ccf4f80 {
+  margin: 0;
+  color: var(--muted);
+  font-size: .8rem;
+}
+.ccf4f80 span {
+  color: var(--text);
+}
+@media (min-width: 1500px) {
+  .c7a9429 {
+    padding-bottom: 6rem;
   }
-  </script>
-  <style>
-:root{
-  --bg:#eef0f3; --bg-2:#e7eaef; --panel:#ffffff; --field:#f1f3f7; --field-2:#e9edf2;
-  --ink:#151a21; --text:#414954; --muted:#6a727d; --faint:#9aa2ad;
-  --line:rgba(20,26,33,.09); --line-2:rgba(20,26,33,.14);
-  --accent:#2563EB; --accent-ink:#0e2863; --accent-soft:rgba(37,99,235,0.13); --accent-glow:rgba(37,99,235,0.3);
-  --cta:#171a20; --cta-hover:#0a0c10; --cta-ink:#ffffff;
-  --shadow-card:0 1px 0 rgba(20,26,33,.02), 0 40px 80px -42px rgba(24,32,48,.40), 0 14px 30px -22px rgba(24,32,48,.24);
-  --shadow-pop:0 24px 60px -26px rgba(24,32,48,.38), 0 8px 20px -12px rgba(24,32,48,.22);
-  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
-  --font: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --ease: cubic-bezier(0.22, 0.7, 0.24, 1);
-  color-scheme: light;
+  .ca86a07 {
+    margin-bottom: 4.5rem;
+  }
+  .c7e5ab8 {
+    gap: 5.5rem;
+  }
+  .c69ef81 {
+    gap: 5.5rem;
+  }
 }
-html[data-theme="dark"]{
-  --bg:#0b0e13; --bg-2:#0e131b; --panel:#141a24; --field:#1b2230; --field-2:#232c3d;
-  --ink:#e9eef7; --text:#bcc5d6; --muted:#8b95a8; --faint:#606a7e;
-  --line:rgba(226,234,250,.10); --line-2:rgba(226,234,250,.18);
-  --accent:#628ef0; --accent-ink:#92b1f5; --accent-soft:rgba(98,142,240,0.16); --accent-glow:rgba(98,142,240,0.34);
-  --cta:#628ef0; --cta-hover:#547ace; --cta-ink:#ffffff;
-  --shadow-card:0 30px 70px -34px rgba(0,0,0,.66), 0 6px 18px -10px rgba(0,0,0,.5);
-  --shadow-pop:0 24px 60px -26px rgba(0,0,0,.7);
-  color-scheme: dark;
+@media (max-width: 1050px) {
+  .c58c0b5 {
+    width: calc(100% - 3rem);
+  }
+  .c7e5ab8,
+  .c69ef81 {
+    grid-template-columns: 190px minmax(0, 1fr);
+    gap: 2.25rem;
+  }
+  .c5fa095 {
+    gap: .75rem;
+  }
+  .c7a4851 {
+    padding: 1rem;
+  }
+  .ca16685 {
+    font-size: .8rem;
+  }
 }
-*{ box-sizing:border-box; }
-html{ height:100%; scroll-behavior:smooth; }
-@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
-body{ margin:0; min-width:320px; height:100%; overflow:hidden; color:var(--text); background:var(--bg); font-family:var(--font); font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
-a{ color:inherit; text-decoration:none; }
-button{ font:inherit; color:inherit; background:none; border:none; cursor:pointer; }
-img{ display:block; max-width:100%; }
-h1,h2,h3,p{ margin:0; }
-a:focus-visible, button:focus-visible, summary:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:10px; }
-.skip{ position:absolute; left:-999px; }
-.skip:focus{ left:12px; top:12px; z-index:120; padding:9px 15px; border-radius:10px; background:var(--cta); color:var(--cta-ink); font-weight:750; }
-.bg{ position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; background:
-  radial-gradient(1100px 700px at 82% 116%, var(--bg-2), transparent 60%),
-  radial-gradient(900px 620px at -6% -8%, var(--bg-2), transparent 58%); }
-.bg::before{ content:""; position:absolute; right:-14%; bottom:-30%; width:min(92vw,940px); aspect-ratio:1; border-radius:50%;
-  background:repeating-radial-gradient(circle at center, transparent 0 86px, var(--line) 86px 87px); opacity:.5; mask:radial-gradient(circle at center, #000 62%, transparent 72%); }
-.bg::after{ content:""; position:absolute; left:-10%; top:-16%; width:min(70vw,560px); aspect-ratio:1; border-radius:50%;
-  background:repeating-radial-gradient(circle at center, transparent 0 64px, var(--line) 64px 65px); opacity:.4; mask:radial-gradient(circle at center, #000 60%, transparent 72%); }
-.topbar{ position:relative; z-index:70; flex:0 0 auto; display:flex; align-items:center; justify-content:space-between; gap:14px; padding:13px clamp(16px,3.4vw,34px);
-  background:color-mix(in srgb, var(--bg) 78%, transparent); backdrop-filter:saturate(140%) blur(12px); -webkit-backdrop-filter:saturate(140%) blur(12px); border-bottom:1px solid var(--line); }
-.tb-left{ display:flex; align-items:center; gap:12px; min-width:0; }
-.hamb{ display:grid; place-items:center; width:40px; height:40px; flex:0 0 auto; position:relative; border:1px solid var(--line-2); border-radius:12px; background:var(--panel); color:var(--ink); transition:border-color .15s var(--ease); }
-.hamb:hover{ border-color:var(--accent); }
-.hamb .bar{ position:absolute; left:11px; right:11px; height:2px; border-radius:2px; background:currentColor; transition:transform .24s var(--ease), opacity .18s var(--ease); }
-.hamb .bar:nth-child(1){ top:14px; } .hamb .bar:nth-child(2){ top:19px; } .hamb .bar:nth-child(3){ top:24px; }
-body.drawer-open .hamb .bar:nth-child(1){ transform:translateY(5px) rotate(45deg); }
-body.drawer-open .hamb .bar:nth-child(2){ opacity:0; }
-body.drawer-open .hamb .bar:nth-child(3){ transform:translateY(-5px) rotate(-45deg); }
-.brand{ display:flex; align-items:center; gap:11px; min-width:0; }
-.brand-logo{ width:34px; height:34px; flex:0 0 auto; display:grid; place-items:center; border-radius:10px; background:var(--panel); box-shadow:inset 0 0 0 1px var(--line-2); }
-.brand-logo img{ width:22px; height:22px; border-radius:50%; }
-.brand-name{ font-size:19px; font-weight:820; letter-spacing:-0.03em; color:var(--ink); line-height:1.1; white-space:nowrap; }
-.tb-right{ display:flex; align-items:center; gap:9px; }
-.theme-toggle{ display:inline-flex; align-items:center; gap:2px; padding:3px; border-radius:999px; background:var(--field); box-shadow:inset 0 0 0 1px var(--line); }
-.theme-toggle button{ display:grid; place-items:center; width:30px; height:30px; border-radius:999px; color:var(--muted); transition:color .15s var(--ease), background-color .15s var(--ease); }
-.theme-toggle button svg{ width:15px; height:15px; }
-.theme-toggle button[aria-pressed="true"]{ color:var(--ink); background:var(--panel); box-shadow:0 2px 8px -3px rgba(0,0,0,.28); }
-.btn-app{ display:inline-flex; align-items:center; gap:8px; padding:9px 15px; border-radius:11px; background:var(--panel); color:var(--ink); font-size:13.5px; font-weight:700; letter-spacing:-0.01em; box-shadow:inset 0 0 0 1px var(--line-2); transition:box-shadow .15s var(--ease), transform .15s var(--ease); white-space:nowrap; }
-.btn-app svg{ width:16px; height:16px; color:var(--muted); }
-.btn-app:hover{ box-shadow:inset 0 0 0 1px var(--accent); transform:translateY(-1px); }
-.btn-app:hover svg{ color:var(--accent-ink); }
-.scrim{ position:fixed; inset:0; z-index:80; background:rgba(10,14,17,.42); opacity:0; visibility:hidden; transition:opacity .28s var(--ease), visibility .28s var(--ease); }
-body.drawer-open .scrim{ opacity:1; visibility:visible; }
-.drawer{ position:fixed; z-index:90; top:0; left:0; height:100dvh; width:300px; max-width:86vw; display:flex; flex-direction:column; padding:16px 14px 16px; background:var(--panel); border-right:1px solid var(--line); box-shadow:var(--shadow-pop);
-  transform:translateX(-104%); transition:transform .3s var(--ease); overflow-y:auto; }
-body.drawer-open .drawer{ transform:translateX(0); }
-.drawer-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:2px 6px 8px; }
-.drawer-head .brand-name{ font-size:15px; }
-.drawer-close{ display:grid; place-items:center; width:34px; height:34px; border-radius:10px; color:var(--muted); }
-.drawer-close:hover{ color:var(--ink); background:var(--field); }
-.drawer-close svg{ width:17px; height:17px; }
-.nav-label{ margin:15px 12px 6px; font-size:10px; font-weight:750; letter-spacing:0.15em; text-transform:uppercase; color:var(--faint); }
-.nav-item{ display:flex; align-items:center; gap:12px; padding:9px 12px; border-radius:10px; color:var(--text); font-size:14px; font-weight:650; transition:color .15s var(--ease), background-color .15s var(--ease); }
-.nav-item .ni-ico{ width:18px; height:18px; flex:0 0 auto; color:var(--muted); }
-.nav-item.is-active{ color:var(--accent-ink); background:var(--accent-soft); }
-.nav-item.is-active .ni-ico{ color:var(--accent-ink); }
-.nav-item:hover{ color:var(--ink); background:var(--field); }
-.nav-group{ border-radius:10px; }
-.nav-group summary{ display:flex; align-items:center; gap:12px; padding:9px 12px; border-radius:10px; color:var(--text); font-size:14px; font-weight:650; cursor:pointer; list-style:none; transition:color .15s var(--ease), background-color .15s var(--ease); }
-.nav-group summary::-webkit-details-marker{ display:none; }
-.nav-group summary .ni-ico{ width:18px; height:18px; flex:0 0 auto; color:var(--muted); }
-.nav-group summary .chev{ width:15px; height:15px; margin-left:auto; color:var(--faint); transition:transform .2s var(--ease); }
-.nav-group summary:hover{ color:var(--ink); background:var(--field); }
-.nav-group[open] summary{ color:var(--ink); }
-.nav-group[open] summary .chev{ transform:rotate(180deg); }
-.nav-sub{ display:flex; flex-direction:column; gap:1px; padding:2px 0 8px 42px; }
-.nav-sub a{ display:flex; align-items:baseline; gap:7px; padding:6px 10px; border-radius:8px; color:var(--muted); font-size:12.5px; font-weight:550; transition:color .15s var(--ease), background-color .15s var(--ease); }
-.nav-sub a small{ color:var(--faint); font-size:10.5px; font-weight:500; }
-.nav-sub a:hover{ color:var(--accent-ink); background:var(--field); }
-.drawer-foot{ margin-top:auto; padding-top:13px; border-top:1px solid var(--line); }
-.disclose{ margin:8px 8px 0; font-size:11px; line-height:1.5; color:var(--muted); }
-.disclose strong{ color:var(--text); font-weight:750; }
-.fine{ margin:6px 8px 0; font-size:10.5px; line-height:1.45; color:var(--faint); }
-.app{ height:100dvh; display:flex; flex-direction:column; overflow:hidden; position:relative; z-index:1; }
-.wrap{ flex:1 1 auto; min-height:0; display:grid; place-items:center; overflow:hidden; }
-.stage{ width:100%; max-width:560px; max-height:100%; margin-inline:auto; padding:clamp(14px,3vh,36px) clamp(16px,3.4vw,26px); display:flex; flex-direction:column; align-items:center; text-align:center; }
-.lead{ margin:0 0 clamp(13px,2.2vh,20px); max-width:24ch; font-size:clamp(19px,2.5vw,27px); line-height:1.16; letter-spacing:-0.025em; font-weight:750; color:var(--ink); }
-.lead .hl{ color:var(--accent-ink); }
-.hero-chips{ display:flex; flex-wrap:wrap; justify-content:center; gap:9px; margin-top:clamp(13px,2.2vh,18px); }
-.hchip{ display:inline-flex; align-items:baseline; gap:7px; padding:8px 13px; border-radius:12px; background:var(--panel); box-shadow:inset 0 0 0 1px var(--line); font-size:12px; font-weight:600; color:var(--muted); transition:box-shadow .15s var(--ease), color .15s var(--ease); }
-.hchip b{ color:var(--ink); font-family:var(--mono); font-size:12.5px; font-weight:650; font-variant-numeric:tabular-nums; }
-.hchip .ext{ color:var(--faint); font-size:10px; }
-a.hchip:hover{ box-shadow:inset 0 0 0 1px var(--accent); color:var(--text); }
-a.hchip:hover .ext{ color:var(--accent-ink); }
-.swap-card{ position:relative; width:min(480px,100%); border-radius:28px; background:var(--panel); padding:clamp(20px,4vw,30px); text-align:left; box-shadow:var(--shadow-card); }
-.card-head{ display:flex; align-items:center; justify-content:space-between; margin:2px 4px 17px; }
-.card-title{ font-size:15px; font-weight:800; letter-spacing:-0.02em; color:var(--ink); }
-.badge{ display:inline-flex; align-items:center; gap:6px; padding:5px 11px; border-radius:999px; color:var(--accent-ink); background:var(--accent-soft); font-size:10px; font-weight:750; letter-spacing:0.07em; text-transform:uppercase; }
-.badge i{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
-.field{ position:relative; padding:17px 18px 18px; border-radius:19px; background:var(--field); }
-.field + .field{ margin-top:6px; }
-.field-top{ display:flex; align-items:center; justify-content:space-between; }
-.field-label{ font-size:12px; font-weight:600; color:var(--muted); }
-.field-bal{ font-size:11px; font-weight:600; color:var(--faint); }
-.field-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:11px; min-width:0; }
-.amount{ min-width:0; }
-.amount b{ display:block; font-size:clamp(29px,5vw,38px); font-weight:750; line-height:1; letter-spacing:-0.02em; color:var(--ink); font-variant-numeric:tabular-nums; }
-.amount span{ display:block; margin-top:6px; font-size:11px; font-weight:600; color:var(--faint); }
-.token-pill{ display:inline-flex; align-items:center; gap:10px; flex:0 0 auto; padding:7px 12px 7px 8px; border-radius:999px; background:var(--panel); box-shadow:0 4px 14px -8px rgba(0,0,0,.4), inset 0 0 0 1px var(--line); transition:box-shadow .15s var(--ease); }
-.token-pill:hover{ box-shadow:0 6px 18px -8px rgba(0,0,0,.42), inset 0 0 0 1px var(--line-2); }
-.token-pill img{ width:26px; height:26px; flex:0 0 auto; border-radius:50%; }
-.token-meta{ display:flex; flex-direction:column; line-height:1.05; min-width:0; }
-.token-meta small{ font-size:9.5px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--faint); }
-.token-meta b{ font-size:15px; font-weight:800; letter-spacing:-0.01em; color:var(--ink); white-space:nowrap; }
-.token-pill .chev{ width:14px; height:14px; flex:0 0 auto; color:var(--faint); }
-.reverse{ position:relative; z-index:2; display:grid; place-items:center; width:40px; height:40px; margin:-14px auto; border:4px solid var(--panel); border-radius:13px; background:var(--field-2); color:var(--muted); box-shadow:0 6px 16px -8px rgba(0,0,0,.4); transition:transform .28s var(--ease), color .15s var(--ease), background-color .15s var(--ease); }
-.reverse svg{ width:16px; height:16px; }
-.reverse:hover{ color:var(--cta-ink); background:var(--accent); transform:rotate(180deg); }
-.details-btn{ display:flex; align-items:center; justify-content:center; gap:8px; width:100%; margin-top:12px; padding:12px; border-radius:14px; background:var(--field); color:var(--muted); font-size:12px; font-weight:750; letter-spacing:0.06em; text-transform:uppercase; transition:color .15s var(--ease), background-color .15s var(--ease); }
-.details-btn svg{ width:14px; height:14px; transition:transform .2s var(--ease); }
-.details-btn:hover{ color:var(--ink); }
-.details-btn[aria-expanded="true"] svg{ transform:rotate(180deg); }
-.details{ overflow:hidden; max-height:0; opacity:0; transition:max-height .3s var(--ease), opacity .22s var(--ease), margin .3s var(--ease); }
-.details.open{ max-height:280px; opacity:1; margin-top:6px; }
-.d-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:11px 8px; border-bottom:1px solid var(--line); }
-.d-row:last-child{ border-bottom:0; }
-.d-row span{ font-size:12.5px; font-weight:600; color:var(--muted); }
-.d-row b{ font-size:12.5px; font-weight:700; color:var(--text); }
-.d-row b.ok{ color:var(--accent-ink); }
-.d-row b.mono{ font-family:var(--mono); font-size:11px; }
-.cta{ display:flex; align-items:center; justify-content:center; gap:8px; margin-top:12px; padding:16px; border-radius:16px; background:var(--cta); color:var(--cta-ink); font-size:15px; font-weight:800; letter-spacing:0.03em; text-transform:uppercase; box-shadow:0 16px 34px -16px rgba(0,0,0,.5); transition:background-color .15s var(--ease), transform .15s var(--ease); }
-.cta svg{ width:16px; height:16px; }
-.cta:hover{ background:var(--cta-hover); transform:translateY(-1px); }
-.card-note{ margin:13px 4px 0; font-size:11px; line-height:1.5; color:var(--faint); text-align:center; }
-.card-note a{ color:var(--muted); text-decoration:underline; text-decoration-color:var(--line-2); text-underline-offset:2px; }
-.card-note a:hover{ color:var(--accent-ink); }
-@media (max-width:560px){
-  .brand-name{ font-size:16px; } .btn-app span{ display:none; } .btn-app{ padding:9px 11px; }
-  .stage{ padding:12px 16px; }
-  .lead{ font-size:clamp(18px,5.5vw,24px); margin-bottom:14px; }
-  .swap-card{ padding:18px; } .field{ padding:14px 15px 15px; } .amount b{ font-size:29px; }
-  .hero-chips{ margin-top:12px; }
+@media (max-width: 760px) {
+  html {
+    scroll-padding-top: 1rem;
+  }
+  .cff30e5 {
+    min-height: 72px;
+  }
+  .c7a9429 {
+    padding-block: 1.25rem 3.25rem;
+  }
+  .ca86a07 {
+    margin-bottom: 2.6rem;
+  }
+  .cd75067 h1 {
+    max-width: 100%;
+    font-size: clamp(2.45rem, 7.4vw, 3.6rem);
+    letter-spacing: -.045em;
+  }
+  .c7f21c6 {
+    font-size: 1.05rem;
+  }
+  .c5fa095 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-block: 1.2rem 2.5rem;
+  }
+  .c7e5ab8 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.3rem;
+    padding-bottom: 3rem;
+  }
+  .c8f81ee {
+    position: static;
+    max-height: none;
+    padding: 1.2rem;
+    border: 1px solid color-mix(in srgb, var(--text) 10%, var(--surface));
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+  .cc780a4 {
+    margin-bottom: .8rem;
+  }
+  .cb0b95e {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .4rem .8rem;
+  }
+  .ca16685 {
+    height: 100%;
+    padding-block: .7rem;
+    font-size: .825rem;
+  }
+  .c9faf01 {
+    display: none;
+  }
+  .ce851ff {
+    margin-bottom: 2.5rem;
+  }
+  .cfee126 {
+    margin-bottom: 2.6rem;
+  }
+  .cfee126 + .cfee126 {
+    padding-top: 2.2rem;
+  }
+  .c69ef81 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+  .cfe094a {
+    padding-block: 2.5rem;
+  }
+  .cfee126,
+  .ce851ff,
+  .cad78a1,
+  .cfe094a {
+    scroll-margin-top: 1rem;
+  }
 }
-@media (max-height:700px){ .lead{ font-size:clamp(17px,4.5vw,21px); margin-bottom:10px; } .hero-chips{ display:none; } }
-@media (max-height:600px){ .field{ padding:12px 15px 13px; } .amount b{ font-size:26px; } .details-btn{ margin-top:8px; padding:9px; } .cta{ padding:14px; margin-top:8px; } }
-@media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
-.stage.is-hero{ max-width:780px; }
-.hero{ display:flex; flex-direction:column; align-items:center; text-align:center; }
-.hero-h2{ margin:0; max-width:17ch; font-size:clamp(31px,5.8vw,56px); line-height:1.04; letter-spacing:-0.035em; font-weight:830; color:var(--ink); }
-.hero-h2 .hl{ color:var(--accent-ink); }
-.hero-sub{ margin:clamp(16px,2.8vh,23px) auto 0; max-width:54ch; font-size:clamp(15px,1.65vw,18px); line-height:1.58; color:var(--muted); font-weight:450; }
-.hero-cta{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:12px; margin-top:clamp(22px,3.6vh,32px); }
-.hero-cta .cta{ margin-top:0; text-transform:none; letter-spacing:0.005em; padding:15px 26px; font-size:15px; border-radius:14px; }
-.hero-cta .cta-ghost{ background:var(--panel); color:var(--ink); box-shadow:inset 0 0 0 1px var(--line-2); }
-.hero-cta .cta-ghost:hover{ background:var(--field); box-shadow:inset 0 0 0 1px var(--accent); transform:translateY(-1px); }
-@media (max-width:560px){ .hero-cta{ flex-direction:column; width:100%; max-width:340px; } .hero-cta .cta{ width:100%; } }
-@media (max-height:640px){ .hero-sub{ font-size:14px; margin-top:12px; } .hero-chips{ display:none; } }
-  </style>
-  <script>document.documentElement.classList.add('js')</script>
+@media (max-width: 440px) {
+  .c58c0b5 {
+    width: calc(100% - 2rem);
+  }
+  .cff30e5 {
+    gap: 1rem;
+  }
+  .c416a4e {
+    gap: .5rem;
+    font-size: 1.05rem;
+  }
+  .c100c81 {
+    gap: .45rem;
+    font-size: .8rem;
+  }
+  .c1403df {
+    gap: .65rem;
+    margin-bottom: 1.1rem;
+  }
+  .cd75067 h1 {
+    font-size: 2.5rem;
+  }
+  .c7b5235 {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .c7a4851 {
+    padding: .9rem;
+  }
+  .c7a4851 strong {
+    font-size: .9rem;
+  }
+  .c7a4851 span {
+    font-size: .75rem;
+  }
+  .cb0b95e {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ce851ff {
+    padding: 1.15rem;
+  }
+  .cc4d566 {
+    font-size: .85rem;
+  }
+  .cc4d566 th,
+  .cc4d566 td {
+    padding-block: .9rem;
+    padding-inline: .5rem;
+  }
+  .c8a6a46 {
+    font-size: .95rem;
+    line-height: 1.8;
+  }
+  .c8a6a46 blockquote {
+    padding: 1rem 1.1rem;
+  }
+  .c172eba {
+    padding: 1.1rem 3rem 1.1rem 1.1rem;
+    font-size: .95rem;
+  }
+  .c172eba::after {
+    top: 1.1rem;
+    right: .9rem;
+  }
+  .cd0ef12 {
+    padding: 0 1.1rem 1.2rem;
+    font-size: .9rem;
+  }
+  .c6707c3 {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .6rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+  .c7b5235:hover {
+    transform: none;
+  }
+}
+@media print {
+  body {
+    background: var(--surface);
+    font-size: 10pt;
+  }
+  .c58c0b5 {
+    width: 100%;
+  }
+  .c68c4a8,
+  .c7b8854,
+  .c7b5235,
+  .c8f81ee,
+  .cd75067::after {
+    display: none;
+  }
+  .cd75067 {
+    background: var(--surface);
+  }
+  .c7a9429 {
+    padding-block: 1rem 2rem;
+  }
+  .ca86a07 {
+    margin-bottom: 1.5rem;
+  }
+  .cd75067 h1 {
+    font-size: 32pt;
+  }
+  .c5fa095 {
+    margin-bottom: 2rem;
+  }
+  .c7e5ab8,
+  .c69ef81 {
+    display: block;
+  }
+  .ce851ff,
+  .c7a4851,
+  .c122493 {
+    box-shadow: none;
+  }
+  .c886828,
+  .c8a6a46 h3 {
+    break-after: avoid;
+  }
+  .c122493,
+  .c737cdd,
+  .c8a6a46 tr {
+    break-inside: avoid;
+  }
+  .c22d9cb {
+    margin-bottom: 1rem;
+  }
+}
+</style>
 </head>
 <body>
-  <a class="skip" href="#route-preview">Skip to preview</a>
-  <div class="bg" aria-hidden="true"></div>
-
-  <div class="app">
-  <header class="topbar">
-    <div class="tb-left">
-      <button class="hamb" type="button" id="hamb" aria-label="Open navigation" aria-controls="drawer" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
-      <div class="brand"><span class="brand-logo"><img src="favicon.png" width="22" height="22" alt="AI Trading Bot logo"></span><h1 class="brand-name">AI Trading Bot</h1></div>
+<a class="c7b8854" href="#guide-main">Skip to guide</a>
+<header class="c68c4a8">
+  <div class="c58c0b5 cff30e5">
+    <div class="c416a4e">
+      <span class="cc6d8b3" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5.5h6a3 3 0 0 1 2 1 3 3 0 0 1 2-1h6v14h-6a3 3 0 0 0-2 1 3 3 0 0 0-2-1H4zM12 6.5v14M7 9h2M15 9h2M7 12h2M15 12h2"/></svg></span>
+      <span>The guide</span>
     </div>
-    <div class="tb-right">
-      <div class="theme-toggle" role="group" aria-label="Color theme">
-        <button type="button" id="theme-light" aria-pressed="true" aria-label="Light theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg></button>
-        <button type="button" id="theme-dark" aria-pressed="false" aria-label="Dark theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a6.5 6.5 0 1 0 10.5 10.5z"/></svg></button>
-      </div>
-      <a class="btn-app" href="dashboard/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M16 11h2"/></svg><span>Open app</span></a>
-    </div>
-  </header>
-
-  <div class="scrim" id="scrim" tabindex="-1"></div>
-  <aside class="drawer" id="drawer" aria-label="Primary" aria-hidden="true">
-    <div class="drawer-head">
-      <div class="brand"><span class="brand-logo"><img src="favicon.png" width="22" height="22" alt=""></span><span class="brand-name">AI Trading Bot</span></div>
-      <button class="drawer-close" type="button" id="drawer-close" aria-label="Close navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-    </div>
-    <nav aria-label="Sections">
-      <p class="nav-label">Bridge</p>
-      <a class="nav-item is-active" href="#route-preview" aria-current="page"><svg class="ni-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 10h11l-3-3M17 14H6l3 3"/></svg>Route preview</a>
-      <p class="nav-label">Understand</p>
-      <details class="nav-group" open><summary><svg class="ni-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h10a3 3 0 0 1 3 3v11a2 2 0 0 0-2-2H4zM20 5h-1a3 3 0 0 0-3 3v11a2 2 0 0 1 2-2h2z"/></svg>AI trading foundations<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="nav-sub"><a href="https://en.wikipedia.org/wiki/Automated_trading_system" target="_blank" rel="noopener noreferrer">Automated Trading Systems <small>Core automation concept</small></a><a href="https://www.ibm.com/think/topics/artificial-intelligence-finance" target="_blank" rel="noopener noreferrer">AI in Finance <small>Trading intelligence overview</small></a><a href="https://www.freqtrade.io/en/stable/freqai/" target="_blank" rel="noopener noreferrer">FreqAI <small>Adaptive model framework</small></a><a href="https://joss.theoj.org/papers/10.21105/joss.04864" target="_blank" rel="noopener noreferrer">FreqAI Research <small>Peer-reviewed project paper</small></a></div></details>
-      <p class="nav-label">Markets &amp; data</p>
-      <details class="nav-group"><summary><svg class="ni-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h10a3 3 0 0 1 3 3v11a2 2 0 0 0-2-2H4zM20 5h-1a3 3 0 0 0-3 3v11a2 2 0 0 1 2-2h2z"/></svg>Live crypto signals<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="nav-sub"><a href="https://www.tradingview.com/markets/cryptocurrencies/prices-all/" target="_blank" rel="noopener noreferrer">Crypto Market Prices <small>Cross-market price screen</small></a><a href="https://coinmarketcap.com/currencies/bitcoin/" target="_blank" rel="noopener noreferrer">Bitcoin Market <small>BTC price and volume</small></a><a href="https://www.kraken.com/prices/ethereum" target="_blank" rel="noopener noreferrer">Ethereum Market <small>ETH price and volume</small></a><a href="https://defillama.com/chain/Ethereum" target="_blank" rel="noopener noreferrer">Ethereum DeFi <small>Chain liquidity and TVL</small></a></div></details>
-      <p class="nav-label">Guides</p>
-      <details class="nav-group"><summary><svg class="ni-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h10a3 3 0 0 1 3 3v11a2 2 0 0 0-2-2H4zM20 5h-1a3 3 0 0 0-3 3v11a2 2 0 0 1 2-2h2z"/></svg>Build and test<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="nav-sub"><a href="https://www.freqtrade.io/en/stable/backtesting/" target="_blank" rel="noopener noreferrer">Backtesting Strategies <small>Test historical performance</small></a><a href="https://www.freqtrade.io/en/stable/freqai-running/" target="_blank" rel="noopener noreferrer">Running FreqAI <small>Train and deploy models</small></a><a href="https://hummingbot.org/strategies/" target="_blank" rel="noopener noreferrer">Hummingbot Strategies <small>Bot strategy catalog</small></a><a href="https://www.quantconnect.com/docs/v2/writing-algorithms/securities/asset-classes/crypto/requesting-data" target="_blank" rel="noopener noreferrer">Crypto Data Feeds <small>Request live market data</small></a></div></details>
-      <p class="nav-label">Safety</p>
-      <details class="nav-group"><summary><svg class="ni-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h10a3 3 0 0 1 3 3v11a2 2 0 0 0-2-2H4zM20 5h-1a3 3 0 0 0-3 3v11a2 2 0 0 1 2-2h2z"/></svg>Risk and verification<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="nav-sub"><a href="https://www.cftc.gov/LearnAndProtect/AdvisoriesAndArticles/AITradingBots.html" target="_blank" rel="noopener noreferrer">CFTC Bot Advisory <small>AI bot scam warnings</small></a><a href="https://www.finra.org/investors/insights/auto-trading-unregistered-entities" target="_blank" rel="noopener noreferrer">FINRA Auto-Trading Risks <small>Unregistered service red flags</small></a><a href="https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-alerts/artificial-intelligence-fraud" target="_blank" rel="noopener noreferrer">Investor.gov AI Fraud <small>AI investment fraud alert</small></a><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer">NIST AI RMF <small>Manage AI system risk</small></a></div></details>
+    <a class="c100c81" href="dashboard/">Open app <span class="ccbf2f8" aria-hidden="true">↗</span></a>
+  </div>
+</header>
+<section class="cd75067" aria-labelledby="guide-title">
+  <div class="c58c0b5 c7a9429">
+    <nav class="ca86a07" aria-label="Breadcrumb"><nav class="ca92871" aria-label="Breadcrumb"><a href="dashboard/">Home</a> <span>/</span> <span>Trading bots</span> <span>/</span> <span>AI Trading Bot</span></nav></nav>
+    <div class="c1403df"><span class="ccf00ff">A closer look</span><span class="c3f153a"></span></div>
+    <h1 id="guide-title">AI <em>Trading Bot</em>.</h1>
+    <p class="c7f21c6">An AI Trading Bot is a program that reads market data, scores it against a model or rule set, and sends buy or sell orders to an exchange through an API instead of a person clicking each trade. The term covers a wide range of designs — a simple grid script, a statistical arbitrage engine, or a model trained on historical price data — and the differences between them matter far more than the label. This guide walks through how it is built, the strategies it typically runs, how it connects to an exchange, and the risks that come with handing execution to code.</p>
+    <a class="c7b5235" href="dashboard/">Open dashboard <span class="ccbf2f8" aria-hidden="true">↗</span></a>
+  </div>
+</section>
+<div class="c58c0b5">
+  <div class="c5fa095" aria-label="Guide highlights">
+    <div class="c7a4851"><strong>Key facts</strong><span>The essentials at a glance</span></div>
+    <div class="c7a4851"><strong>In depth</strong><span>Explore the details</span></div>
+    <div class="c7a4851"><strong>Questions answered</strong><span>Find a little more clarity</span></div>
+    <div class="c7a4851"><strong>Sources</strong><span>Follow the references</span></div>
+  </div>
+  <div class="c7e5ab8">
+    <nav class="c8f81ee" aria-labelledby="toc-title">
+      <h2 class="cc780a4" id="toc-title">On this page</h2>
+      <ul class="cb0b95e" id="toc-list">
+        <li><a class="ca16685" href="#key-facts">Key facts</a></li>
+        <li><a class="ca16685" href="#guide-sections" data-sections-link>In depth</a></li>
+        <li><a class="ca16685" href="#questions">Questions &amp; answers</a></li>
+        <li><a class="ca16685" href="#sources">Sources</a></li>
+      </ul>
+      <p class="c9faf01">Read from the beginning, or jump to the details you need.</p>
     </nav>
-    <div class="drawer-foot">
-      <p class="disclose"><strong>Independent dashboard.</strong> Not affiliated with any protocol or issuer named here.</p>
-      <p class="fine">Live figures come from public third-party sources and change. Educational reference only.</p>
-    </div>
-  </aside>
-
-  <div class="wrap">
-    <main class="stage is-hero">
-      <div class="hero" id="app">
-        <h2 class="hero-h2"><span class="hl">Automate crypto trading</span>, around the clock</h2>
-        <p class="hero-sub">Build, backtest, and monitor model-driven strategies across always-on crypto markets while retaining explicit controls over execution and risk.</p>
-        <div class="hero-cta">
-          <a class="cta cta-primary" href="dashboard/" target="_blank" rel="noopener noreferrer">Enter Dashboard <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
-          <a class="cta cta-ghost" href="https://www.freqtrade.io/en/stable/freqai/" target="_blank" rel="noopener noreferrer">Read the docs</a>
-        </div>
-      </div>
-      <div class="hero-chips">
-        <a class="hchip" href="https://coinmarketcap.com/currencies/bitcoin/" target="_blank" rel="noopener noreferrer">BTC Price <b id="sig0">—</b> <span class="ext" aria-hidden="true">↗</span></a>
-          <a class="hchip" href="https://www.kraken.com/prices/ethereum" target="_blank" rel="noopener noreferrer">ETH Price <b id="sig1">—</b> <span class="ext" aria-hidden="true">↗</span></a>
-          <a class="hchip" href="https://defillama.com/chain/Ethereum" target="_blank" rel="noopener noreferrer">Ethereum TVL <b id="sig2">—</b> <span class="ext" aria-hidden="true">↗</span></a>
-      </div>
+    <main class="cc6d626" id="guide-main" tabindex="-1">
+      <section class="ce851ff" id="key-facts" aria-labelledby="facts-title">
+        <div class="c351a18"><h2 id="facts-title">Key facts</h2><p>At a glance</p></div>
+        <div class="cad5b06"><table class="cc4d566"><tbody><tr><th scope="row">Core function</th><td>Reads market data, scores a model, places orders via API</td></tr>
+<tr><th scope="row">Common inputs</th><td>Price, volume, order book depth, on-chain or news data</td></tr>
+<tr><th scope="row">Execution path</th><td>Exchange REST/WebSocket API, not manual clicks</td></tr>
+<tr><th scope="row">Custody model</th><td>API key with trade permission; funds stay on the exchange</td></tr>
+<tr><th scope="row">Validation step</th><td>Backtesting and paper trading before live capital</td></tr>
+<tr><th scope="row">Primary risk</th><td>Overfitting to past data and leaked or overscoped API keys</td></tr></tbody></table></div>
+      </section>
+      <div class="cb217fa" id="guide-sections"><section class="cfee126"><h2 class="c886828">What an AI Trading Bot Is</h2><div class="c8a6a46"><strong>An AI Trading Bot is software that ingests market data, evaluates it against a model or rule set, and executes trades automatically through an exchange's programming interface rather than through manual order entry.</strong> The "AI" label is applied loosely across the space: some bots run fixed, deterministic rules with no learning involved, while others use statistical or machine-learning models trained on historical data to estimate a probability or a signal strength before acting. What they share is the automation of execution — once configured and connected, it watches the market continuously and reacts faster and more consistently than a person manually placing each order.<h3>Rule-based vs model-based bots</h3>A rule-based bot follows explicit, human-written conditions — buy when a moving average crosses, sell when a price band is touched. A model-based bot instead outputs a score or prediction from a trained algorithm and converts that score into an order according to a separate execution rule. The line between the two blurs in practice, since most production systems combine a learned signal with hard-coded risk limits.<h3>Where the term gets overused</h3>Marketing material often calls any automated script that way even with no learning component present. Reading the actual strategy logic, not just the label, is the only reliable way to know what a given bot really does.</div></section>
+<section class="cfee126"><h2 class="c886828">How an AI Trading Bot Generates Signals</h2><div class="c8a6a46">A signal is the bot's internal judgment about whether a market condition favors buying, selling, or waiting. Most designs build that judgment from a handful of recurring inputs: recent price and volume history, order book depth, volatility measures, and sometimes external data such as funding rates or on-chain activity. The model or rule set converts those inputs into a signal, and a separate execution layer turns the signal into an actual order sized to the account's available balance and risk limits.<h3>Feature inputs and data quality</h3>The signal is only as good as the data feeding it. Gaps, delayed candles, or a feed that disagrees with the exchange's own order book can produce a signal that looks correct in testing but fails live. Bots that pull data directly from an exchange's own feed, documented in resources like the <a href="https://binance-docs.github.io/apidocs/spot/en/" rel="nofollow noopener" target="_blank">Binance API documentation</a>, reduce one layer of that mismatch.<h3>Model retraining and drift</h3>A model trained on one period of market behavior can lose accuracy once conditions change — a shift often called regime change. Retraining on a rolling window of recent data helps, but retraining too often on noisy data can make the model chase randomness instead of a real pattern.</div></section>
+<section class="cfee126"><h2 class="c886828">Common AI Trading Bot Strategies</h2><div class="c8a6a46">Most deployed bots fall into a small number of strategy families, and knowing which family a bot belongs to tells you more about its risk profile than any marketing claim does. The table below groups the common approaches by mechanism rather than by how aggressively they are marketed.<table><thead><tr><th>Strategy</th><th>Mechanism</th><th>Typical risk</th></tr></thead><tbody><tr><td>Dollar-cost averaging (DCA)</td><td>Buys fixed amounts on a schedule regardless of price</td><td>Can average into a sustained downtrend</td></tr><tr><td>Grid trading</td><td>Places buy and sell orders at fixed price intervals</td><td>Loses on a strong one-directional move outside the grid</td></tr><tr><td>Arbitrage</td><td>Exploits price gaps between venues or pairs</td><td>Thin margins, dependent on speed and fees</td></tr><tr><td>Trend-following</td><td>Enters positions aligned with a detected directional move</td><td>Whipsaws in choppy, range-bound markets</td></tr></tbody></table><h3>DCA and grid bots in practice</h3>DCA and grid strategies are the most common entry points because they are rule-based and easy to reason about: a grid bot profits from a market that oscillates inside a range, and a DCA bot smooths out the average entry price over time instead of trying to pick a single bottom.<h3>Arbitrage and trend-following at scale</h3>Arbitrage bots depend on speed and low fees, since the price gaps they target are usually small and close quickly. Trend-following bots instead try to ride a sustained move, so they tend to underperform in sideways markets with no clear trend.</div></section>
+<section class="cfee126"><h2 class="c886828">Connecting an AI Trading Bot: API Keys vs Custody</h2><div class="c8a6a46">It needs a way to read account data and place orders, and that connection is almost always an exchange API key rather than direct control of a wallet's private key. The key distinction is custody: the exchange still holds the funds, and the API key only grants permission to act within the scopes you set, such as placing trades but not withdrawing.<h3>Scoping permissions correctly</h3>A properly configured key should have trading permission enabled and withdrawal permission disabled, so that even if the key leaks, the attacker cannot move funds off the exchange — only place or cancel orders. Most exchanges also let you restrict a key to a specific IP address, which closes off most remote-abuse scenarios.<h3>Self-custodied execution</h3>Some bots instead sign transactions directly from a wallet to trade on a decentralized exchange. This removes the exchange as an intermediary but shifts key security entirely onto the operator, since a leaked private key — unlike a scoped API key — can move funds directly, a tradeoff worth understanding through <a href="https://ethereum.org/en/developers/docs/" rel="nofollow noopener" target="_blank">ethereum.org's developer docs</a>.</div></section>
+<section class="cfee126"><h2 class="c886828">Backtesting a Trading Bot Before Live Use</h2><div class="c8a6a46">Backtesting runs a strategy against historical price data to see how it would have performed, and it is the step most often skipped or done carelessly. A result that looks strong in a backtest is not a guarantee of future behavior; it only shows how the current rules or model would have reacted to one specific stretch of the past, as explained in general terms by <a href="https://www.investopedia.com/terms/b/backtesting.asp" rel="nofollow noopener" target="_blank">Investopedia's overview of backtesting</a>.<h3>Overfitting to historical data</h3>A model or rule set tuned too closely to one historical dataset can fit its noise rather than a durable pattern — a problem known as overfitting. The warning sign is a strategy that performs unrealistically well in-sample but degrades sharply on data it has not seen, including live markets.<h3>Paper trading as a bridge step</h3>Running the bot on a paper or testnet account before committing real capital exposes execution issues — order rejections, slippage, API rate limits — that a backtest on historical candles cannot reveal, since a backtest rarely accounts for the friction of live order matching.</div></section>
+<section class="cfee126"><h2 class="c886828">Risks of Running an AI Trading Bot</h2><div class="c8a6a46">Beyond strategy choice, running one introduces a set of operational risks that apply regardless of which model or rule set it runs. The most common ones are:<ul><li>Overfitting — a model tuned to past data performs worse once market conditions shift.</li><li>API key exposure — a leaked key with trading or withdrawal permission can be used by an attacker.</li><li>Market regime shifts — a strategy built for one volatility or trend environment can underperform in another.</li><li>Drawdowns — losing streaks are a normal part of any strategy and can exceed what a backtest showed.</li><li>Exchange or connectivity outages — a bot that cannot reach the API cannot manage open positions.</li><li>Fee and slippage drag — strategies with thin margins, like arbitrage, can be erased by trading costs.</li></ul></div></section>
+<section class="cfee126"><h2 class="c886828">Choosing and Operating a Trading Bot Responsibly</h2><div class="c8a6a46">Picking a bot is less about the model it claims to run and more about whether its risk controls, logging, and key permissions are visible and adjustable. A trustworthy setup lets you see every order it places, set hard position-size and loss limits independent of the model's own output, and revoke API access instantly if something looks wrong. Reviewing how the underlying strategy is classified under <a href="https://en.wikipedia.org/wiki/Algorithmic_trading" rel="nofollow noopener" target="_blank">algorithmic trading</a> more broadly, and reading an open implementation's documentation such as the <a href="https://www.freqtrade.io/en/stable/" rel="nofollow noopener" target="_blank">Freqtrade docs</a>, gives a concrete sense of what the automation is actually doing before any capital is at risk.</div></section></div>
+      <section class="cad78a1" id="questions" aria-labelledby="questions-title">
+        <h2 class="c886828" id="questions-title">Questions &amp; answers</h2>
+        <details class="c122493"><summary class="c172eba">What is an AI Trading Bot?</summary><div class="cd0ef12">It is software that reads market data, evaluates it against a model or rule set, and places orders on an exchange automatically through an API, without a person manually entering each trade.</div></details>
+<details class="c122493"><summary class="c172eba">Does an AI Trading Bot always use machine learning?</summary><div class="cd0ef12">No. Many bots sold under that name run fixed, rule-based logic with no learning component. Others use a trained statistical or machine-learning model to generate a signal. Reading the strategy logic is the only way to tell which one a given bot uses.</div></details>
+<details class="c122493"><summary class="c172eba">How does an AI Trading Bot connect to an exchange?</summary><div class="cd0ef12">Through an API key with scoped permissions, usually trading enabled and withdrawal disabled, and sometimes restricted to a specific IP address. The exchange keeps custody of the funds; the key only lets the bot place and cancel orders within the scopes granted.</div></details>
+<details class="c122493"><summary class="c172eba">What strategies do AI Trading Bots commonly run?</summary><div class="cd0ef12">Common families include dollar-cost averaging, grid trading, arbitrage, and trend-following. Each has a different mechanism and a different failure mode, from a grid bot struggling in a strong one-directional move to an arbitrage bot losing its edge to fees.</div></details>
+<details class="c122493"><summary class="c172eba">Why does backtesting matter for an AI Trading Bot?</summary><div class="cd0ef12">Backtesting shows how a strategy would have performed on historical data, but a strong backtest can reflect overfitting to that specific past period rather than a durable edge. Paper trading before live capital helps surface execution issues a backtest cannot show.</div></details>
+<details class="c122493"><summary class="c172eba">What is the biggest security risk with an AI Trading Bot?</summary><div class="cd0ef12">A leaked or overscoped API key is the most common operational risk. Limiting the key to trading permissions only, disabling withdrawals, and restricting it to a known IP address reduces the damage if the key is ever exposed.</div></details>
+<details class="c122493"><summary class="c172eba">Can a trading bot lose money?</summary><div class="cd0ef12">Yes. Drawdowns are a normal part of any strategy, market regime shifts can make a previously effective model underperform, and fees or slippage can erode thin-margin strategies like arbitrage regardless of how the signal was generated.</div></details>
+      </section>
     </main>
   </div>
+</div>
+<section class="cfe094a" id="sources" aria-labelledby="sources-title">
+  <div class="c58c0b5 c69ef81">
+    <div class="c22d9cb"><h2 id="sources-title">Sources</h2><p>References for further reading.</p></div>
+    <div class="c2d0c97"><ul class="cefe1ec"><li><a class="c737cdd" href="https://en.wikipedia.org/wiki/Algorithmic_trading" rel="nofollow noopener" target="_blank">Algorithmic trading — Wikipedia</a></li>
+<li><a class="c737cdd" href="https://binance-docs.github.io/apidocs/spot/en/" rel="nofollow noopener" target="_blank">Binance API documentation</a></li>
+<li><a class="c737cdd" href="https://www.investopedia.com/terms/b/backtesting.asp" rel="nofollow noopener" target="_blank">Backtesting — Investopedia</a></li>
+<li><a class="c737cdd" href="https://www.freqtrade.io/en/stable/" rel="nofollow noopener" target="_blank">Freqtrade documentation</a></li></ul></div>
   </div>
-
-  <script>
-  (function(){
-    "use strict";
-    var $=function(id){ return document.getElementById(id); };
-    var root=document.documentElement, tl=$("theme-light"), td=$("theme-dark");
-    function applyTheme(t){ if(t==="dark"){ root.setAttribute("data-theme","dark"); } else { root.removeAttribute("data-theme"); } if(tl) tl.setAttribute("aria-pressed", String(t!=="dark")); if(td) td.setAttribute("aria-pressed", String(t==="dark")); }
-    var saved=null; try{ saved=localStorage.getItem("aitradingb-theme"); }catch(e){}
-    if(saved) applyTheme(saved);
-    function setTheme(t){ applyTheme(t); try{ localStorage.setItem("aitradingb-theme", t); }catch(e){} }
-    if(tl) tl.addEventListener("click", function(){ setTheme("light"); });
-    if(td) td.addEventListener("click", function(){ setTheme("dark"); });
-    var body=document.body, hamb=$("hamb"), scrim=$("scrim"), drawer=$("drawer"), dclose=$("drawer-close");
-    function openD(){ body.classList.add("drawer-open"); hamb.setAttribute("aria-expanded","true"); drawer.setAttribute("aria-hidden","false"); }
-    function closeD(){ body.classList.remove("drawer-open"); hamb.setAttribute("aria-expanded","false"); drawer.setAttribute("aria-hidden","true"); }
-    if(hamb) hamb.addEventListener("click", function(){ body.classList.contains("drawer-open")?closeD():openD(); });
-    if(scrim) scrim.addEventListener("click", closeD);
-    if(dclose) dclose.addEventListener("click", closeD);
-    document.addEventListener("keydown", function(e){ if(e.key==="Escape" && body.classList.contains("drawer-open")) closeD(); });
-    if(drawer) drawer.addEventListener("click", function(e){ if(e.target.closest("a")) closeD(); });
-
-    var db=$("details-btn"), dp=$("details");
-    if(db&&dp) db.addEventListener("click", function(){ var open=dp.classList.toggle("open"); db.setAttribute("aria-expanded", String(open)); db.firstChild.textContent = open?"Hide details ":"Show details "; });
-    function money(n){ if(n>=1e9) return "$"+(n/1e9).toFixed(2)+"B"; if(n>=1e6) return "$"+(n/1e6).toFixed(1)+"M"; if(n>=1e3) return "$"+(n/1e3).toFixed(0)+"K"; return "$"+n.toFixed(0); }
-    function gwei(g){ return (g>=0.1?g.toFixed(2):(g>=0.001?g.toFixed(3):Number(g.toPrecision(2)).toString()))+" gwei"; }
-    function grab(url,opt){ var c="AbortController" in window ? new AbortController():null, t=c?setTimeout(function(){c.abort();},7000):null; var o=opt||{}; if(c) o.signal=c.signal; return fetch(url,o).then(function(r){ if(!r.ok) throw 0; return r.json(); }).finally(function(){ if(t) clearTimeout(t); }); }
-    grab("https://coins.llama.fi/prices/current/coingecko:bitcoin").then(function(j){ var c=j&&j.coins&&j.coins["coingecko:bitcoin"], v=c&&Number(c.price); if(isFinite(v)&&v>0) $("sig0").textContent="$"+v.toLocaleString("en-US",{maximumFractionDigits:2}); }).catch(function(){});
-    grab("https://coins.llama.fi/prices/current/coingecko:ethereum").then(function(j){ var c=j&&j.coins&&j.coins["coingecko:ethereum"], v=c&&Number(c.price); if(isFinite(v)&&v>0) $("sig1").textContent="$"+v.toLocaleString("en-US",{maximumFractionDigits:2}); }).catch(function(){});
-    grab("https://api.llama.fi/v2/historicalChainTvl/Ethereum").then(function(a){ if(!a||!a.length) return; var v=Number(a[a.length-1].tvl); if(isFinite(v)&&v>0) $("sig2").textContent=money(v); }).catch(function(){});
-  })();
-  </script>
+</section>
+<footer class="c1908c8">
+  <div class="c58c0b5 c6707c3">
+    <span class="c328ce8">The guide</span>
+    <p class="ccf4f80">Last updated <span>Updated Oct 09, 2026</span></p>
+  </div>
+</footer>
+<script>
+(() => {
+  const toc = document.getElementById('toc-list');
+  const sections = Array.from(document.querySelectorAll('#guide-sections .cfee126'));
+  const fallback = toc.querySelector('[data-sections-link]');
+  const fragment = document.createDocumentFragment();
+  sections.forEach((section, index) => {
+    if (!section.id) {
+      const base = `guide-section-${index + 1}`;
+      let id = base;
+      let suffix = 1;
+      while (document.getElementById(id)) id = `${base}-${suffix++}`;
+      section.id = id;
+    }
+    const heading = section.querySelector('.c886828, h2, h3');
+    const item = document.createElement('li');
+    const link = document.createElement('a');
+    link.className = 'toc-link';
+    link.href = `#${encodeURIComponent(section.id)}`;
+    link.textContent = heading?.textContent.trim() || section.getAttribute('aria-label') || `Section ${index + 1}`;
+    item.append(link);
+    fragment.append(item);
+  });
+  if (sections.length) fallback.parentElement.replaceWith(fragment);
+  const entries = Array.from(toc.querySelectorAll('a[href^="#"]')).map(link => {
+    const target = document.getElementById(decodeURIComponent(link.hash.slice(1)));
+    return { link, target };
+  }).filter(entry => entry.target);
+  if (!entries.length) return;
+  let activeLink;
+  let pending = false;
+  const activate = entry => {
+    if (!entry || entry.link === activeLink) return;
+    if (activeLink) activeLink.removeAttribute('aria-current');
+    entry.link.setAttribute('aria-current', 'location');
+    activeLink = entry.link;
+  };
+  const update = () => {
+    pending = false;
+    const boundary = Math.min(180, window.innerHeight * .25);
+    let active = entries[0];
+    for (const entry of entries) {
+      if (entry.target.getBoundingClientRect().top <= boundary) active = entry;
+    }
+    const root = document.scrollingElement || document.documentElement;
+    if (root.scrollHeight > window.innerHeight && Math.ceil(window.scrollY + window.innerHeight) >= root.scrollHeight - 2) {
+      active = entries[entries.length - 1];
+    }
+    activate(active);
+  };
+  const schedule = () => {
+    if (pending) return;
+    pending = true;
+    window.requestAnimationFrame(update);
+  };
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(schedule, {
+      rootMargin: '-12% 0px -60% 0px',
+      threshold: [0, .1, .5, 1]
+    });
+    entries.forEach(entry => observer.observe(entry.target));
+  }
+  toc.addEventListener('click', event => {
+    const link = event.target.closest('a');
+    if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const entry = entries.find(item => item.link === link);
+    if (!entry) return;
+    event.preventDefault();
+    const hadTabindex = entry.target.hasAttribute('tabindex');
+    if (!hadTabindex) {
+      entry.target.setAttribute('tabindex', '-1');
+      entry.target.addEventListener('blur', () => entry.target.removeAttribute('tabindex'), { once: true });
+    }
+    entry.target.focus({ preventScroll: true });
+    entry.target.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      block: 'start'
+    });
+    if (window.location.hash !== link.hash) {
+      try { window.history.pushState(null, '', link.hash); } catch {}
+    }
+    activate(entry);
+  });
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule, { passive: true });
+  window.addEventListener('hashchange', schedule);
+  window.addEventListener('load', schedule, { once: true });
+  update();
+})();
+</script>
 </body>
 </html>
